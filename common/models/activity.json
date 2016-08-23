@@ -1,0 +1,20 @@
+{
+  "name": "Activity",
+  "plural": "Activities",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "timeSlot": {
+      "type": "belongsTo",
+      "model": "TimeSlot",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

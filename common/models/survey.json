@@ -1,0 +1,19 @@
+{
+  "name": "Survey",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "shopkeeper": {
+      "type": "belongsTo",
+      "model": "Shopkeeper",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

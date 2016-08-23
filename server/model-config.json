@@ -1,0 +1,63 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Admin": {
+    "dataSource": "mongoDB-local",
+    "public": false
+  },
+  "Shopkeeper": {
+    "dataSource": "mongoDB-local",
+    "public": true
+  },
+  "TimeSlot": {
+    "dataSource": "mongoDB-local",
+    "public": true
+  },
+  "Activity": {
+    "dataSource": "mongoDB-local",
+    "public": true
+  },
+  "Product": {
+    "dataSource": "mongoDB-local",
+    "public": true
+  },
+  "Survey": {
+    "dataSource": "mongoDB-local",
+    "public": true
+  },
+  "SurveyItem": {
+    "dataSource": "mongoDB-local",
+    "public": false
+  }
+}
