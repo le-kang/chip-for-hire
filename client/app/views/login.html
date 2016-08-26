@@ -1,0 +1,47 @@
+<div class="sign-in-container">
+  <md-card ng-if="login.action == 'sign-in'">
+    <md-toolbar class="text-center">
+      <h2 class="logo margin-20">Chip for hire</h2>
+      <h3 class="md-headline margin-10">Login</h3>
+    </md-toolbar>
+    <md-content class="padding-20">
+      <form name="signInForm" ng-submit="login.login()">
+      <md-input-container class="md-block">
+        <label>Email</label>
+        <input type="email" required ng-model="login.email">
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label>Password</label>
+        <input type="password" required ng-model="login.password">
+      </md-input-container>
+      <md-button class="md-primary md-raised full-width" type="submit">Log in</md-button>
+      <md-button class="md-primary full-width" ng-click="login.toggleRegistration()">Don't have an account? Sign up now</md-button>
+      </form>
+    </md-content>
+  </md-card>
+  <md-card ng-if="login.action == 'sign-up'">
+    <md-toolbar class="text-center">
+      <h2 class="logo margin-20">Chip for hire</h2>
+      <h3 class="md-headline margin-10">Register</h3>
+    </md-toolbar>
+    <md-content class="padding-20">
+      <form name="signUpForm" ng-submit="login.register()">
+        <md-input-container class="md-block">
+          <label>Shop name</label>
+          <input type="text" required ng-model="login.name">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Email</label>
+          <input type="email" required ng-model="login.email">
+        </md-input-container>
+        <md-input-container class="md-block">
+          <label>Password</label>
+          <input type="password" required ng-model="login.password">
+        </md-input-container>
+        <md-button class="md-primary md-raised full-width" type="submit">Sign up</md-button>
+        <md-button class="md-primary full-width" ng-click="login.toggleRegistration()">Already have an account? Login here</md-button>
+      </form>
+    </md-content>
+  </md-card>
+  <img ng-src="assets/images/reem-hello.png">
+</div>

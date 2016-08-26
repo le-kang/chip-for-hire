@@ -1,15 +1,11 @@
 {
-  "db": {
-    "name": "db",
-    "connector": "memory"
-  },
-  "mongoDB-local": {
+  "mongoDB": {
     "host": "localhost",
     "port": 27017,
     "url": "mongodb://localhost:27017/chip",
     "database": "chip",
     "password": "",
-    "name": "mongoDB-local",
+    "name": "mongoDB",
     "user": "",
     "connector": "mongodb"
   }

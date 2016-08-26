@@ -1,0 +1,42 @@
+.sign-in-container {
+  position: relative;
+  //height: 500px;
+  max-width: 500px;
+  padding-top: 180px;
+  margin: auto;
+
+  md-input-container {
+    margin: 10px 0;
+  }
+
+  md-card.ng-enter {
+    animation: pulse 1s;
+    z-index: 2;
+
+    & + img {
+      opacity: 0;
+    }
+  }
+
+  md-toolbar {
+    min-height: 140px;
+  }
+
+  md-content {
+    z-index: 2;
+  }
+
+  .md-button {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  img {
+    animation: bounce 1s;
+    width: 250px;
+    position: absolute;
+    right: 10px;
+    top: 40px;
+  }
+}
+
