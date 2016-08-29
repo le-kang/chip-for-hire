@@ -1,0 +1,23 @@
+#menu {
+  .shop-logo-container {
+    height: 150px;
+    margin-bottom: 5px;
+  }
+
+  .menu-items {
+    height: calc(100% - 155px);
+    overflow-y: auto;
+
+    md-list-item {
+      cursor: pointer;
+
+      &.active {
+        background: rgba(0,0,0,.1);
+      }
+    }
+
+    .fa-stack {
+      margin-right: 10px;
+    }
+  }
+}

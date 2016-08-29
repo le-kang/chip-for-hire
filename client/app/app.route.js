@@ -24,8 +24,14 @@
           header: {
             templateUrl: 'app/views/header.html'
           },
+          banner: {
+            templateUrl: 'app/views/banner.html'
+          },
           content: {
-            template: '<div class="container" ui-view layout="row"></div>'
+            template: '<div ui-view class="container" layout="row" layout-xs="column" layout-margin layout-padding></div>'
+          },
+          menu: {
+            templateUrl: 'app/views/menu.html'
           }
         }
       })
@@ -35,7 +41,37 @@
         requireAuthentication: true
         // controller: 'HomeController',
         // controllerAs: 'home'
+      })
+
+      .state('main.view.profile', {
+        url: '/profile',
+        templateUrl: 'app/views/profile.html',
+        requireAuthentication: true
+        // controller: 'HomeController',
+        // controllerAs: 'home'
+      })
+      .state('main.view.activities', {
+        url: '/activities',
+        templateUrl: 'app/views/activities.html',
+        requireAuthentication: true
+        // controller: 'HomeController',
+        // controllerAs: 'home'
+      })
+      .state('main.view.products', {
+        url: '/products',
+        templateUrl: 'app/views/products.html',
+        requireAuthentication: true
+        // controller: 'HomeController',
+        // controllerAs: 'home'
+      })
+      .state('main.view.surveys', {
+        url: '/surveys',
+        templateUrl: 'app/views/surveys.html',
+        requireAuthentication: true
+        // controller: 'HomeController',
+        // controllerAs: 'home'
       });
+
 
     $urlRouterProvider.otherwise('/');
   }

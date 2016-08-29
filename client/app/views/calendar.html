@@ -1,0 +1,43 @@
+<!--<div layout="row" layout-align="start center">-->
+  <!--<p>{{ cal.currentDate.format('MMMM YYYY') }}</p>-->
+<!--</div>-->
+<ul class="week">
+  <li class="prev" layout="row" layout-align="center center">
+    <md-button aria-label="Previous week" class="md-icon-button md-primary" ng-disabled="cal.isCurrentWeek()" ng-click="cal.previousWeek()">
+      <md-icon md-font-icon="zmdi zmdi-arrow-left"></md-icon>
+    </md-button>
+  </li>
+  <li class="date" ng-repeat="day in cal.week">
+    <span ng-class="{'weekend': cal.isWeekend(day)}">{{ day.format('dd') }}</span>
+    <div class="day-in-month" ng-class="{'disabled': cal.isBeforeToday(day), 'current': cal.isCurrentDay(day), 'reserved': cal.hasReservation(day)}" ng-click="cal.selectDay(day)">
+      <span class="day">
+        {{ day.format('D') }}
+      </span>
+      <small class="month">
+        {{ day.format('MMM') | uppercase }}
+      </small>
+    </div>
+  </li>
+  <li class="next" layout="row" layout-align="center center">
+    <md-button aria-label="Next week" class="md-icon-button md-primary" ng-click="cal.nextWeek()">
+      <md-icon md-font-icon="zmdi zmdi-arrow-right"></md-icon>
+    </md-button>
+  </li>
+</ul>
+<div layout="row" layout-align="center center">
+  <md-button ng-if="cal.booking" ng-click="cal.selectDay(cal.booking.date)" class="md-raised md-primary">Booking</md-button>
+  <md-button ng-click="cal.selectDay(cal.today)">Today</md-button>
+  <md-button ng-if="cal.reservation" ng-click="cal.selectDay(cal.reservation.date)" class="md-raised md-warn">Reservation</md-button>
+</div>
+<div layout="column" layout-align="start center" layout-padding>
+  <h2>{{ cal.currentDate.format('dddd, Do MMMM YYYY') }}</h2>
+  <p>Chip is not available today. You can try to make a reservation and we will get back to you as soon as we can.</p>
+</div>
+<md-list class="hours">
+  <md-list-item ng-repeat="hour in cal.hours" ng-class="{'reserved': cal.isReserved(hour)}">
+    <p>{{ hour }}: 00</p>
+    <md-button ng-if="cal.isReserved(hour)" class="md-secondary md-warn" ng-click="cal.reservation = null">Cancel Reservation</md-button>
+    <md-button ng-if="!cal.reservation && !cal.isToday(cal.currentDate)" class="md-secondary" ng-click="cal.reserve(hour)">Reserve</md-button>
+    <md-divider></md-divider>
+  </md-list-item>
+</md-list>

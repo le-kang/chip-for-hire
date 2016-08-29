@@ -1,5 +1,11 @@
-<div class="md-toolbar-tools">
-  <h1 class="logo">
+<div class="md-toolbar-tools container" layout="row">
+  <h2 flex class="logo">
     <a href="#">Chip for Hire</a>
-  </h1>
+  </h2>
+  <md-button aria-label="Greeting" hide-xs>
+    Hello, {{ $root.currentUser.name }}
+  </md-button>
+  <md-button aria-label="Menu" class="md-icon-button md-primary" ng-click="header.toggleMenu()">
+    <md-icon md-font-icon="zmdi zmdi-menu"></md-icon>
+  </md-button>
 </div>

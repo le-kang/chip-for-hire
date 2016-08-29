@@ -1,0 +1,53 @@
+<div class="shop-logo-container padding-10 md-whiteframe-2dp" layout="column" layout-align="center center">
+  <img ng-src="assets/images/awaiting-logo.png" width="250">
+</div>
+<div class="menu-items">
+  <md-list flex>
+    <md-list-item ng-click="menu.navigate('main.view.home')" ng-class="{ 'active': $root.state == 'main.view.home' }">
+      <span class="fa-stack">
+        <i class="fa fa-circle-thin fa-stack-2x"></i>
+        <i class="fa fa-home fa-stack-1x"></i>
+      </span>
+      <p>Home</p>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-list-item ng-click="menu.navigate('main.view.profile')" ng-class="{ 'active': $root.state == 'main.view.profile' }">
+      <span class="fa-stack">
+        <i class="fa fa-circle-thin fa-stack-2x"></i>
+        <i class="fa fa-suitcase fa-stack-1x"></i>
+      </span>
+      <p>My Profile</p>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-list-item ng-click="menu.navigate('main.view.activities')" ng-class="{ 'active': $root.state == 'main.view.activities' }">
+      <span class="fa-stack">
+        <i class="fa fa-circle-thin fa-stack-2x"></i>
+        <i class="fa fa-tags fa-stack-1x"></i>
+      </span>
+      <p>My Activities</p>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-list-item ng-click="menu.navigate('main.view.products')" ng-class="{ 'active': $root.state == 'main.view.products' }">
+      <span class="fa-stack">
+        <i class="fa fa-circle-thin fa-stack-2x"></i>
+        <i class="fa fa-shopping-bag fa-stack-1x"></i>
+      </span>
+      <p>My Products</p>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-list-item ng-click="menu.navigate('main.view.surveys')" ng-class="{ 'active': $root.state == 'main.view.surveys' }">
+      <span class="fa-stack">
+        <i class="fa fa-circle-thin fa-stack-2x"></i>
+        <i class="fa fa-file-text fa-stack-1x"></i>
+      </span>
+      <p>My Surveys</p>
+    </md-list-item>
+    <md-divider></md-divider>
+    <div layout="row" layout-margin>
+      <md-button class="md-raised md-warn" flex ng-click="menu.logout()">
+        <md-icon md-font-icon="fa fa-sign-out"></md-icon>
+        Logout
+      </md-button>
+    </div>
+  </md-list>
+</div>

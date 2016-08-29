@@ -31,6 +31,7 @@
     });
 
     function secureRoute(event, route) {
+      $rootScope.state = route.name;
       if (route.requireAuthentication) {
         if (localStorage.getItem('getCurrentUser')) {
           $timeout(function() {
@@ -39,6 +40,7 @@
         } else {
           if (!$rootScope.currentUser) {
             event.preventDefault();
+            $rootScope.state = 'login';
             $state.go('login');
           }
         }
