@@ -67,9 +67,9 @@
       .state('main.view.surveys', {
         url: '/surveys',
         templateUrl: 'app/views/surveys.html',
-        requireAuthentication: true
-        // controller: 'HomeController',
-        // controllerAs: 'home'
+        requireAuthentication: true,
+        controller: 'SurveysController',
+        controllerAs: 'surveys'
       });
 
 

@@ -1,0 +1,95 @@
+.surveys {
+  height: calc(100vh - 200px) !important;
+
+  .empty {
+    font-size: 1.5em;
+    font-weight: 300;
+    color: #999;
+    height: 100%
+  }
+
+  .survey-list {
+    background-color: #fff;
+    overflow-y: auto;
+    position: relative;
+
+    @media (min-width: 600px) {
+      border-right: 1px solid #eeeeee;
+    }
+
+    md-list-item.selected {
+      background: rgba(0,0,0,.1);
+    }
+  }
+
+  .survey-details {
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+
+    md-card {
+      margin: 10px;
+      width: calc(100% - 20px);
+
+      &.ng-animate {
+        transition: 1000ms linear all;
+        position:absolute;
+        margin: 0 0 10px 0;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+      }
+
+      &.ng-enter {
+        opacity: 0;
+        left: 150%;
+      }
+
+      &.ng-enter-active {
+        opacity: 1;
+        left: 0;
+      }
+
+      &.ng-leave {
+        opacity: 1;
+        left: 0;
+      }
+
+      &.ng-leave-active {
+        opacity: 0;
+        left: 400%;
+      }
+
+      .header {
+        border-bottom: 1px solid #eee;
+        margin-bottom: 8px;
+
+        .md-subhead {
+          margin: 8px 0;
+        }
+      }
+
+      .survey-content {
+        min-height: 300px;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .add-survey-item {
+    min-width: 500px;
+
+    md-input-container {
+      margin: 5px 0;
+
+      .error {
+        font-size: 12px;
+        line-height: 14px;
+        padding: 5px 5px 0 0;
+        color: #dd2c00;
+      }
+    }
+  }
+}

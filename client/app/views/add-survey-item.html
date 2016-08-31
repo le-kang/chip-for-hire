@@ -1,0 +1,40 @@
+<md-dialog aria-label="Add Survey Item">
+  <form name="surveyItemForm" ng-submit="surveyItem.create()">
+    <md-dialog-content class="md-dialog-content add-survey-item">
+      <h2 class="md-title">Add Survey Question</h2>
+      <div layout="column">
+        <md-input-container flex>
+          <label>Question</label>
+          <textarea rows="2" md-select-on-focus md-maxlength="500" ng-model="surveyItem.question" required></textarea>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Options 1</label>
+          <input type="text" ng-model="surveyItem.option1" required>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Options 2</label>
+          <input type="text" ng-model="surveyItem.option2" required>
+        </md-input-container>
+        <md-input-container flex>
+          <label>Options 3</label>
+          <input type="text" ng-model="surveyItem.option3">
+        </md-input-container>
+        <md-input-container flex>
+          <label>Options 4</label>
+          <input type="text" ng-model="surveyItem.option4">
+        </md-input-container>
+        <p class="md-caption">
+          <b>Note</b>: Option 1 and Option 2 cannot be same, however, other duplicates will be ignored
+        </p>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button class="md-primary" ng-click="surveyItem.cancel()">
+        Cancel
+      </md-button>
+      <md-button type="submit" class="md-primary" ng-disabled="surveyItemForm.$invalid">
+        Add
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

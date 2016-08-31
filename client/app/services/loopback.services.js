@@ -7134,6 +7134,58 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "GET",
             },
 
+            // INTERNAL. Use Survey.surveyItems.findById() instead.
+            "prototype$__findById__surveyItems": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/surveyItems/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.destroyById() instead.
+            "prototype$__destroyById__surveyItems": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/surveyItems/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.updateById() instead.
+            "prototype$__updateById__surveyItems": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/surveyItems/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Survey.surveyItems() instead.
+            "prototype$__get__surveyItems": {
+              isArray: true,
+              url: urlBase + "/Surveys/:id/surveyItems",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.create() instead.
+            "prototype$__create__surveyItems": {
+              url: urlBase + "/Surveys/:id/surveyItems",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.destroyAll() instead.
+            "prototype$__delete__surveyItems": {
+              url: urlBase + "/Surveys/:id/surveyItems",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.count() instead.
+            "prototype$__count__surveyItems": {
+              url: urlBase + "/Surveys/:id/surveyItems/count",
+              method: "GET",
+            },
+
             /**
              * @ngdoc method
              * @name lbServices.Survey#create
@@ -7682,6 +7734,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               url: urlBase + "/Shopkeepers/:id/surveys/count",
               method: "GET",
             },
+
+            // INTERNAL. Use SurveyItem.survey() instead.
+            "::get::SurveyItem::survey": {
+              url: urlBase + "/SurveyItems/:id/survey",
+              method: "GET",
+            },
           }
         );
 
@@ -7915,6 +7973,1128 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         R.shopkeeper = function() {
           var TargetResource = $injector.get("Shopkeeper");
           var action = TargetResource["::get::Survey::shopkeeper"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Survey.surveyItems
+     * @header lbServices.Survey.surveyItems
+     * @object
+     * @description
+     *
+     * The object `Survey.surveyItems` groups methods
+     * manipulating `SurveyItem` instances related to `Survey`.
+     *
+     * Call {@link lbServices.Survey#surveyItems Survey.surveyItems()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey#surveyItems
+             * @methodOf lbServices.Survey
+             *
+             * @description
+             *
+             * Queries surveyItems of Survey.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+        R.surveyItems = function() {
+          var TargetResource = $injector.get("SurveyItem");
+          var action = TargetResource["::get::Survey::surveyItems"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.surveyItems#count
+             * @methodOf lbServices.Survey.surveyItems
+             *
+             * @description
+             *
+             * Counts surveyItems of Survey.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.surveyItems.count = function() {
+          var TargetResource = $injector.get("SurveyItem");
+          var action = TargetResource["::count::Survey::surveyItems"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.surveyItems#create
+             * @methodOf lbServices.Survey.surveyItems
+             *
+             * @description
+             *
+             * Creates a new instance in surveyItems of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+        R.surveyItems.create = function() {
+          var TargetResource = $injector.get("SurveyItem");
+          var action = TargetResource["::create::Survey::surveyItems"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.surveyItems#createMany
+             * @methodOf lbServices.Survey.surveyItems
+             *
+             * @description
+             *
+             * Creates a new instance in surveyItems of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+        R.surveyItems.createMany = function() {
+          var TargetResource = $injector.get("SurveyItem");
+          var action = TargetResource["::createMany::Survey::surveyItems"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.surveyItems#destroyAll
+             * @methodOf lbServices.Survey.surveyItems
+             *
+             * @description
+             *
+             * Deletes all surveyItems of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.surveyItems.destroyAll = function() {
+          var TargetResource = $injector.get("SurveyItem");
+          var action = TargetResource["::delete::Survey::surveyItems"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.surveyItems#destroyById
+             * @methodOf lbServices.Survey.surveyItems
+             *
+             * @description
+             *
+             * Delete a related item by id for surveyItems.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for surveyItems
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.surveyItems.destroyById = function() {
+          var TargetResource = $injector.get("SurveyItem");
+          var action = TargetResource["::destroyById::Survey::surveyItems"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.surveyItems#findById
+             * @methodOf lbServices.Survey.surveyItems
+             *
+             * @description
+             *
+             * Find a related item by id for surveyItems.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for surveyItems
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+        R.surveyItems.findById = function() {
+          var TargetResource = $injector.get("SurveyItem");
+          var action = TargetResource["::findById::Survey::surveyItems"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.surveyItems#updateById
+             * @methodOf lbServices.Survey.surveyItems
+             *
+             * @description
+             *
+             * Update a related item by id for surveyItems.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for surveyItems
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+        R.surveyItems.updateById = function() {
+          var TargetResource = $injector.get("SurveyItem");
+          var action = TargetResource["::updateById::Survey::surveyItems"];
+          return action.apply(R, arguments);
+        };
+
+
+        return R;
+      }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.SurveyItem
+ * @header lbServices.SurveyItem
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `SurveyItem` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+  module.factory(
+    "SurveyItem",
+    [
+      'LoopBackResource', 'LoopBackAuth', '$injector',
+      function(Resource, LoopBackAuth, $injector) {
+        var R = Resource(
+        urlBase + "/SurveyItems/:id",
+          { 'id': '@id' },
+          {
+
+            // INTERNAL. Use SurveyItem.survey() instead.
+            "prototype$__get__survey": {
+              url: urlBase + "/SurveyItems/:id/survey",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#create
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Create a new instance of the model and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+            "create": {
+              url: urlBase + "/SurveyItems",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#createMany
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Create a new instance of the model and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+            "createMany": {
+              isArray: true,
+              url: urlBase + "/SurveyItems",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#upsert
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `data` – `{object=}` - Model instance data
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+            "upsert": {
+              url: urlBase + "/SurveyItems",
+              method: "PATCH",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#replaceOrCreate
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Replace an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+            "replaceOrCreate": {
+              url: urlBase + "/SurveyItems/replaceOrCreate",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#exists
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Check whether a model instance exists in the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `exists` – `{boolean=}` -
+             */
+            "exists": {
+              url: urlBase + "/SurveyItems/:id/exists",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#findById
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Find a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             *  - `filter` – `{object=}` - Filter defining fields and include
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+            "findById": {
+              url: urlBase + "/SurveyItems/:id",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#replaceById
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Replace attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+            "replaceById": {
+              url: urlBase + "/SurveyItems/:id/replace",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#find
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Find all instances of the model matched by filter from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+            "find": {
+              isArray: true,
+              url: urlBase + "/SurveyItems",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#findOne
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Find first instance of the model matched by filter from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+            "findOne": {
+              url: urlBase + "/SurveyItems/findOne",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#updateAll
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Update instances of the model matched by {{where}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * The number of instances updated
+             */
+            "updateAll": {
+              url: urlBase + "/SurveyItems/update",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#deleteById
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+            "deleteById": {
+              url: urlBase + "/SurveyItems/:id",
+              method: "DELETE",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#count
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Count instances of the model matched by where from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+            "count": {
+              url: urlBase + "/SurveyItems/count",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#prototype$updateAttributes
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Patch attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `data` – `{object=}` - An object of model property name/value pairs
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+            "prototype$updateAttributes": {
+              url: urlBase + "/SurveyItems/:id",
+              method: "PATCH",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#createChangeStream
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Create a change stream.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `options` – `{object=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `changes` – `{ReadableStream=}` -
+             */
+            "createChangeStream": {
+              url: urlBase + "/SurveyItems/change-stream",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.findById() instead.
+            "::findById::Survey::surveyItems": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/surveyItems/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.destroyById() instead.
+            "::destroyById::Survey::surveyItems": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/surveyItems/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.updateById() instead.
+            "::updateById::Survey::surveyItems": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/surveyItems/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Survey.surveyItems() instead.
+            "::get::Survey::surveyItems": {
+              isArray: true,
+              url: urlBase + "/Surveys/:id/surveyItems",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.create() instead.
+            "::create::Survey::surveyItems": {
+              url: urlBase + "/Surveys/:id/surveyItems",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.createMany() instead.
+            "::createMany::Survey::surveyItems": {
+              isArray: true,
+              url: urlBase + "/Surveys/:id/surveyItems",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.destroyAll() instead.
+            "::delete::Survey::surveyItems": {
+              url: urlBase + "/Surveys/:id/surveyItems",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Survey.surveyItems.count() instead.
+            "::count::Survey::surveyItems": {
+              url: urlBase + "/Surveys/:id/surveyItems/count",
+              method: "GET",
+            },
+          }
+        );
+
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#patchOrCreate
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `data` – `{object=}` - Model instance data
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+        R["patchOrCreate"] = R["upsert"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#updateOrCreate
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `data` – `{object=}` - Model instance data
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+        R["updateOrCreate"] = R["upsert"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#update
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Update instances of the model matched by {{where}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * The number of instances updated
+             */
+        R["update"] = R["updateAll"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#destroyById
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+        R["destroyById"] = R["deleteById"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#removeById
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+        R["removeById"] = R["deleteById"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#patchAttributes
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Patch attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `data` – `{object=}` - An object of model property name/value pairs
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `SurveyItem` object.)
+             * </em>
+             */
+        R["patchAttributes"] = R["prototype$updateAttributes"];
+
+
+        /**
+        * @ngdoc property
+        * @name lbServices.SurveyItem#modelName
+        * @propertyOf lbServices.SurveyItem
+        * @description
+        * The name of the model represented by this $resource,
+        * i.e. `SurveyItem`.
+        */
+        R.modelName = "SurveyItem";
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.SurveyItem#survey
+             * @methodOf lbServices.SurveyItem
+             *
+             * @description
+             *
+             * Fetches belongsTo relation survey.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `refresh` – `{boolean=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Survey` object.)
+             * </em>
+             */
+        R.survey = function() {
+          var TargetResource = $injector.get("Survey");
+          var action = TargetResource["::get::SurveyItem::survey"];
           return action.apply(R, arguments);
         };
 

@@ -58,7 +58,7 @@
   },
   "SurveyItem": {
     "dataSource": "mongoDB",
-    "public": false
+    "public": true
   },
   "News": {
     "dataSource": "mongoDB",

@@ -13,7 +13,6 @@
     vm.images = [];
     vm.currentImageIndex = 0;
     vm.smallScreen = $mdMedia('xs');
-    console.log(vm.smallScreen);
 
     vm.add = add;
     vm.select = select;
@@ -71,7 +70,7 @@
       vm.currentImageIndex = 0;
     }
 
-    function unselect(product) {
+    function unselect() {
       vm.selected = null;
     }
 
