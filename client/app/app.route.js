@@ -46,9 +46,9 @@
       .state('main.view.profile', {
         url: '/profile',
         templateUrl: 'app/views/profile.html',
-        requireAuthentication: true
-        // controller: 'HomeController',
-        // controllerAs: 'home'
+        requireAuthentication: true,
+        controller: 'ProfileController',
+        controllerAs: 'profile'
       })
       .state('main.view.activities', {
         url: '/activities',

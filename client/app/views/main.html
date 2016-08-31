@@ -1,8 +1,8 @@
 <md-sidenav id="menu" ui-view="menu" md-component-id="menu" class="md-sidenav-right md-whiteframe-4dp" ng-controller="MenuController as menu"></md-sidenav>
 <div layout="column" flex>
   <md-toolbar id="header" ui-view="header" class="md-whiteframe-1dp" ng-controller="HeaderController as header"></md-toolbar>
-  <md-content flex>
+  <md-content id="content" flex>
     <div id="banner" ui-view="banner"></div>
-    <div id="content" ui-view="content"></div>
+    <div ui-view="content"></div>
   </md-content>
 </div>

@@ -8,6 +8,7 @@
       'ngMessages',
       'ngSanitize',
       'ui.router',
-      'lbServices'
+      'lbServices',
+      'ngFileUpload'
     ])
 })();

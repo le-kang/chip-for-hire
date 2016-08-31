@@ -171,7 +171,7 @@ gulp.task('clean', function() {
 gulp.task('nodemon', function() {
   return nodemon({
     script: 'server/server.js',
-    watch: ['server/**/*']
+    watch: ['server/**/*', 'common/**/*']
   });
 });
 

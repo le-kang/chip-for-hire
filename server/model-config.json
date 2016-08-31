@@ -63,5 +63,9 @@
   "News": {
     "dataSource": "mongoDB",
     "public": true
+  },
+  "Container": {
+    "dataSource": "fileStorage",
+    "public": true
   }
 }

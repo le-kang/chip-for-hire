@@ -1,0 +1,47 @@
+<div class="widget md-whiteframe-2dp profile" flex>
+  <div class="widget-header" layout="row" layout-align="start center">
+    <h3 class="md-subhead" flex>My Profile</h3>
+    <md-button aria-label="Refresh" class="md-icon-button" ng-click="profile.save()">
+      <md-tooltip>Update Profile</md-tooltip>
+      <md-icon md-font-icon="fa fa-save"></md-icon>
+    </md-button>
+  </div>
+  <div class="widget-content padding-10 profile">
+    <form ng-if="profile.currentUser" name="profileForm">
+      <div flex layout="row" layout-xs="column" layout-wrap>
+        <p class="label" flex="100">Shop Logo</p>
+        <div class="logo-upload-container" flex="100" layout="row" layout-xs="column" layout-align="center center">
+          <div class="shop-logo">
+            <img ng-if="!profile.currentUser.logo" ng-src="assets/images/awaiting-logo.png">
+            <img ng-if="profile.currentUser.logo" ng-src="http://localhost:3000/api/Containers/{{ profile.currentUser.id }}/download/{{ profile.currentUser.logo }}">
+          </div>
+          <div class="logo-upload" flex="">
+            <div ngf-drop ngf-select ng-model="profile.newLogo" class="drop-box"
+                 ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
+                 accept="image/*" ngf-pattern="'image/*'">
+              Drop logo here or click to upload</div>
+            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+          </div>
+        </div>
+        <md-input-container class="md-block" flex="50" flex-xs="100">
+          <label>Shop Name</label>
+          <input type="text" ng-model="profile.currentUser.name">
+        </md-input-container>
+        <md-input-container class="md-block" flex="50" flex-xs="100">
+          <label>Phone Number</label>
+          <input name="mobilePhone" ng-pattern="/^04[0-9]{8}$/" ng-model="profile.currentUser.mobileNumber">
+          <div ng-messages="profileForm.mobilePhone.$error">
+            <div ng-message="pattern">04######## - Please enter a valid Australian mobile phone number.</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex="100">
+          <label>Shop Description</label>
+          <textarea rows="2" md-select-on-focus md-maxlength="500" ng-model="profile.currentUser.description"></textarea>
+        </md-input-container>
+        <div class="text-right" flex="100">
+          <md-button class="md-raised md-primary" ng-click="profile.save()">Update Profile</md-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

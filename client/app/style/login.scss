@@ -1,35 +1,69 @@
 .sign-in-container {
   position: relative;
-  //height: 500px;
   max-width: 500px;
   padding-top: 180px;
-  margin: auto;
+  margin: 0 auto;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
 
   md-input-container {
     margin: 10px 0;
   }
 
-  md-card.ng-enter {
-    animation: pulse 1s;
-    z-index: 2;
+  md-card {
+    margin: 0;
+    height: 500px;
+    width: 100%;
 
-    & + img {
-      opacity: 0;
+    md-toolbar {
+      min-height: 140px;
     }
-  }
 
-  md-toolbar {
-    min-height: 140px;
-  }
+    md-content {
+      z-index: 2;
+      background-color: #fff !important;
+      position: relative;
+      overflow: hidden;
 
-  md-content {
-    z-index: 2;
-    background-color: #fff;
-  }
+      form {
+        position:absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
 
-  .md-button {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+        &.ng-animate{
+          transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        }
+
+        &.ng-enter {
+          opacity: 0;
+          left: 100%;
+        }
+
+        &.ng-enter-active {
+          opacity: 1;
+          left: 0;
+        }
+
+        &.ng-leave {
+          opacity: 1;
+          left: 0;
+        }
+
+        &.ng-leave-active {
+          opacity: 0;
+          left: -100%;
+        }
+      }
+    }
+
+    .md-button {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
   }
 
   img {

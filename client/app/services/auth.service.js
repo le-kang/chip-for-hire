@@ -6,19 +6,14 @@
     .factory('auth', auth);
 
   /** @ngInject */
-  function auth(Admin, Shopkeeper, $rootScope){
+  function auth(Admin, Shopkeeper, $rootScope, _){
     function login(email, password) {
       return Shopkeeper
         .login({email: email, password: password})
         .$promise
         .then(function(response) {
-          var currentUser = {
-            id: response.user.id,
-            name: response.user.name,
-            role: 'Shopkeeper'
-          };
-          $rootScope.currentUser = currentUser;
-          sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+          $rootScope.currentUser = _.extend(response.user, { role: 'Shopkeeper' });
+          sessionStorage.setItem('currentUser', JSON.stringify($rootScope.currentUser));
         });
     }
 
@@ -37,13 +32,8 @@
         .login({email: email, password: password})
         .$promise
         .then(function(response) {
-          var currentUser = {
-            id: response.user.id,
-            name: response.user.name,
-            role: 'Admin'
-          };
-          $rootScope.currentUser = currentUser;
-          sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+          $rootScope.currentUser = _.extend(response.user, { role: 'Admin' });
+          sessionStorage.setItem('currentUser', JSON.stringify($rootScope.currentUser));
         });
     }
 

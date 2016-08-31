@@ -14,6 +14,10 @@
     "content": {
       "type": "string",
       "required": true
+    },
+    "createdAt": {
+      "type": "string",
+      "default": "$now"
     }
   },
   "validations": [],

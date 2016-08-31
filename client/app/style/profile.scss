@@ -1,0 +1,28 @@
+.profile {
+  .logo-upload-container {
+    margin-bottom: 20px;
+
+    .shop-logo img {
+      max-width: 200px;
+      max-height: 100px;
+      height: auto;
+      margin: 0 20px;
+    }
+
+    .drop-box {
+      background: #F8F8F8;
+      border: 5px dashed #DDD;
+      height: 100px;
+      text-align: center;
+      padding: 30px;
+      margin: 10px;
+      max-width: 300px;
+      cursor: pointer;
+      box-sizing: border-box;
+
+      &.dragover {
+        border: 5px dashed blue;
+      }
+    }
+  }
+}

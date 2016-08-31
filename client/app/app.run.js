@@ -11,7 +11,7 @@
       localStorage.setItem('getCurrentUser', Date.now());
       $timeout(function() {
         localStorage.removeItem('getCurrentUser');
-      })
+      }, 1)
     } else {
       $rootScope.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
     }
@@ -36,7 +36,7 @@
         if (localStorage.getItem('getCurrentUser')) {
           $timeout(function() {
             secureRoute(event, route)
-          }, 1);
+          }, 2);
         } else {
           if (!$rootScope.currentUser) {
             event.preventDefault();

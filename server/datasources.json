@@ -8,5 +8,11 @@
     "name": "mongoDB",
     "user": "",
     "connector": "mongodb"
+  },
+  "fileStorage": {
+    "name": "fileStorage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "storage"
   }
 }
