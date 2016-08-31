@@ -2,7 +2,7 @@
 <div layout="column" flex>
   <md-toolbar id="header" ui-view="header" class="md-whiteframe-1dp" ng-controller="HeaderController as header"></md-toolbar>
   <md-content id="content" flex>
-    <div id="banner" ui-view="banner"></div>
+    <div id="banner" ui-view="banner" ng-controller="BannerController as banner" ng-class="{ 'hidden': banner.hidden }"></div>
     <div ui-view="content"></div>
   </md-content>
 </div>

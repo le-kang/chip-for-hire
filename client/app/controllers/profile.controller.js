@@ -22,7 +22,7 @@
 
     function save() {
       Shopkeeper
-        .prototype$updateAttributes(
+        .patchAttributes(
           { id: vm.currentUser.id },
           {
             name: vm.currentUser.name,
@@ -31,8 +31,8 @@
           }
         )
         .$promise
-        .then(function(res) {
-          vm.currentUser = res;
+        .then(function(shopkeeper) {
+          vm.currentUser = shopkeeper;
           sessionStorage.setItem('currentUser', JSON.stringify($rootScope.currentUser));
           $mdToast.show(
             $mdToast

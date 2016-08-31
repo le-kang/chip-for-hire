@@ -6725,6 +6725,84 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "POST",
             },
 
+            /**
+             * @ngdoc method
+             * @name lbServices.Product#uploadImages
+             * @methodOf lbServices.Product
+             *
+             * @description
+             *
+             * Upload product images
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `ctx` – `{object=}` -
+             *
+             *  - `id` – `{string=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `images` – `{[string]=}` -
+             */
+            "uploadImages": {
+              url: urlBase + "/Products/uploadImages",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Product#deleteImage
+             * @methodOf lbServices.Product
+             *
+             * @description
+             *
+             * Delete a product image
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `id` – `{string=}` -
+             *
+             *  - `image` – `{string=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `images` – `{[string]=}` -
+             */
+            "deleteImage": {
+              url: urlBase + "/Products/deleteImage",
+              method: "POST",
+            },
+
             // INTERNAL. Use Shopkeeper.products.findById() instead.
             "::findById::Shopkeeper::products": {
               params: {

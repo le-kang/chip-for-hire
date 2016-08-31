@@ -12,6 +12,11 @@
     },
     "description": {
       "type": "string"
+    },
+    "images": {
+      "type": [
+        "string"
+      ]
     }
   },
   "validations": [],
@@ -30,7 +35,13 @@
       "permission": "DENY"
     },
     {
-      "accessType": "*",
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW"
@@ -41,6 +52,20 @@
       "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "uploadImages"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "deleteImage"
     }
   ],
   "methods": {}

@@ -28,7 +28,7 @@
             templateUrl: 'app/views/banner.html'
           },
           content: {
-            template: '<div ui-view class="container" layout="row" layout-xs="column" layout-margin layout-padding></div>'
+            template: '<div ui-view class="container" layout="row" layout-xs="column" layout-margin></div>'
           },
           menu: {
             templateUrl: 'app/views/menu.html'
@@ -60,9 +60,9 @@
       .state('main.view.products', {
         url: '/products',
         templateUrl: 'app/views/products.html',
-        requireAuthentication: true
-        // controller: 'HomeController',
-        // controllerAs: 'home'
+        requireAuthentication: true,
+        controller: 'ProductsController',
+        controllerAs: 'products'
       })
       .state('main.view.surveys', {
         url: '/surveys',
