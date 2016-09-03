@@ -37,13 +37,13 @@
       auth
         .register(vm.name, vm.email, vm.password)
         .then(function() {
-          vm.action = 'sign-in';
           $mdToast.show(
             $mdToast
               .simple()
-              .textContent("Account created, please login")
+              .textContent('Account "' + vm.email + '" created')
               .hideDelay(3000)
-          )
+          );
+          login();
         }, function() {
 
         });

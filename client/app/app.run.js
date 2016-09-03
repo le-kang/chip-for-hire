@@ -7,6 +7,9 @@
 
   /** @ngInject */
   function authenticate($rootScope, $state, $window, $timeout) {
+    if (localStorage.getItem('getCurrentUser')) {
+      localStorage.removeItem('getCurrentUser');
+    }
     if (!sessionStorage.getItem('currentUser')) {
       localStorage.setItem('getCurrentUser', Date.now());
       $timeout(function() {
@@ -40,8 +43,18 @@
         } else {
           if (!$rootScope.currentUser) {
             event.preventDefault();
-            $rootScope.state = 'login';
-            $state.go('login');
+            $rootScope.state = route.requireAdmin ? 'admin-login' : 'login';
+            $state.go($rootScope.state);
+          } else {
+            if (route.requireAdmin && $rootScope.currentUser.role != 'Admin') {
+              event.preventDefault();
+              $rootScope.state = 'admin-login';
+              $state.go($rootScope.state);
+            } else if (!route.requireAdmin && $rootScope.currentUser.role == 'Admin') {
+              event.preventDefault();
+              $rootScope.state = 'login';
+              $state.go($rootScope.state);
+            }
           }
         }
       }

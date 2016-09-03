@@ -38,9 +38,9 @@
       .state('main.view.home', {
         url: '/',
         templateUrl: 'app/views/home.html',
-        requireAuthentication: true
-        // controller: 'HomeController',
-        // controllerAs: 'home'
+        requireAuthentication: true,
+        controller: 'HomeController',
+        controllerAs: 'home'
       })
 
       .state('main.view.profile', {
@@ -53,9 +53,9 @@
       .state('main.view.activities', {
         url: '/activities',
         templateUrl: 'app/views/activities.html',
-        requireAuthentication: true
-        // controller: 'HomeController',
-        // controllerAs: 'home'
+        requireAuthentication: true,
+        controller: 'ActivitiesController',
+        controllerAs: 'activities'
       })
       .state('main.view.products', {
         url: '/products',
@@ -70,8 +70,21 @@
         requireAuthentication: true,
         controller: 'SurveysController',
         controllerAs: 'surveys'
+      })
+      .state('admin-login', {
+        url: '/admin-login',
+        templateUrl: 'app/views/admin-login.html',
+        controller: 'AdminLoginController',
+        controllerAs: 'login'
+      })
+      .state('admin', {
+        url: '/admin',
+        templateUrl: 'app/views/admin.html',
+        requireAuthentication: true,
+        requireAdmin: true,
+        controller: 'AdminController',
+        controllerAs: 'admin'
       });
-
 
     $urlRouterProvider.otherwise('/');
   }

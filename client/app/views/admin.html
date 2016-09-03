@@ -1,0 +1,24 @@
+<div layout="column" flex>
+  <md-toolbar id="header" ng-include="'app/views/header.html'" class="md-whiteframe-1dp" ng-controller="HeaderController as header"></md-toolbar>
+  <md-content id="content" flex>
+    <div class="container" layout="row" layout-xs="column" layout-margin>
+      <div class="widget md-whiteframe-2dp calendar" flex>
+        <div class="widget-header" layout="row" layout-align="start center">
+          <h3 class="md-subhead" flex>Chip's Availability</h3>
+        </div>
+        <div class="widget-content">
+          <div calendar></div>
+        </div>
+      </div>
+      <div class="widget md-whiteframe-2dp news" flex>
+        <div class="widget-header" layout="row" layout-align="start center">
+          <h3 class="md-subhead" flex>News</h3>
+          <md-button aria-label="Refresh" class="md-icon-button" ng-click="">
+            <md-icon md-font-icon="zmdi zmdi-plus"></md-icon>
+          </md-button>
+        </div>
+        <div class="widget-content"></div>
+      </div>
+    </div>
+  </md-content>
+</div>
