@@ -4,12 +4,13 @@
 @import url(https://fonts.googleapis.com/css?family=Kaushan+Script);
 
 html, body {
-  font-size: 14px;
+  width: 100%;
   height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  background: url('../assets/images/background.jpg') repeat 0 0;
+  overflow-x: hidden;
 }
 
 .browsehappy {
@@ -20,14 +21,13 @@ html, body {
 }
 
 #main {
-  overflow: hidden;
   width: 100%;
   height: 100%;
   max-width: 100%;
   max-height: 100%;
 }
 
-#content {
+#authentication, #content {
   background: url('../assets/images/background.jpg') repeat 0 0;
 }
 
@@ -49,6 +49,10 @@ html, body {
   padding: 20px !important;
 }
 
+.padding-15 {
+  padding: 15px !important;
+}
+
 .padding-10 {
   padding: 10px !important;
 }
@@ -57,8 +61,16 @@ html, body {
   padding: 5px !important;
 }
 
+.padding-0 {
+  padding: 0 !important;
+}
+
 .margin-20 {
   margin: 20px !important;
+}
+
+.margin-15 {
+  margin: 15px !important;
 }
 
 .margin-10 {
@@ -67,6 +79,14 @@ html, body {
 
 .margin-5 {
   margin: 5px !important;
+}
+
+.margin-0 {
+  margin: 0 !important;
+}
+
+.line-height-normal {
+  line-height: normal;
 }
 
 .full-width {
@@ -110,10 +130,28 @@ md-icon {
   font-size: 20px !important;
 }
 
+md-input-container {
+  margin: 10px 0 0;
+}
+
 .label {
-  color: rgba(0,0,0,0.54);
+  padding-left: 3px;
   margin: 5px 0;
-  font-size: 11px;
+  color: rgba(0,0,0,0.54);
+  transform: translate3d(0, 6px, 0) scale(0.75);
+  transform-origin: left top;
+}
+
+.empty {
+  font-size: 1.5em;
+  font-weight: 300;
+  color: #999;
+}
+
+.errors {
+  font-size: 12px;
+  color: #dd2c00;
+  margin-top: 10px;
 }
 
 .widget {
@@ -132,8 +170,14 @@ md-icon {
   }
 
   .widget-content {
-    min-height: 200px;
+    min-height: 300px;
+    box-sizing: border-box;
     position: relative;
+    overflow-x: hidden;
+
+    &.full-height {
+      height: calc(100vh - 146px) !important;
+    }
   }
 }
 
@@ -166,7 +210,30 @@ md-icon {
   }
 }
 
+.drop-box {
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  height: 80px;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  box-sizing: border-box;
 
+  &.dragover {
+    border: 5px dashed blue;
+  }
+}
+
+.animate-wrapper {
+  position: relative;
+  > .ng-enter, > .ng-leave {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+  }
+}
 
 // injector
 // endinjector

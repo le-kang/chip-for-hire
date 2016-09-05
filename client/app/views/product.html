@@ -1,0 +1,60 @@
+<md-content class="full-width" flex ng-if="product.selected">
+  <md-card class="padding-10">
+    <div class="header" layout="row" layout-align="start center">
+      <h3 flex class="md-subhead">Edit Product</h3>
+      <md-button aria-label="Save" class="md-icon-button" ng-click="product.save()">
+        <md-tooltip>Save</md-tooltip>
+        <md-icon md-font-icon="fa fa-save"></md-icon>
+      </md-button>
+      <md-button aria-label="Close" class="md-icon-button" ng-click="product.unselect()">
+        <md-tooltip>Close</md-tooltip>
+        <md-icon md-font-icon="zmdi zmdi-close"></md-icon>
+      </md-button>
+    </div>
+    <form name="productForm">
+      <div layout="column">
+        <md-input-container class="full-width">
+          <label>Product Name</label>
+          <input type="text" ng-model="product.selected.name" required>
+        </md-input-container>
+        <md-input-container class="full-width">
+          <label>Product Description</label>
+          <textarea rows="2" md-select-on-focus md-maxlength="500" ng-model="product.selected.description"></textarea>
+        </md-input-container>
+        <div class="full-width">
+          <p class="label" flex="100">Product Images</p>
+          <div class="images-upload">
+            <div ngf-drop ngf-select ng-model="product.images" class="drop-box"
+                 ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="false"
+                 accept="image/*" ngf-pattern="'image/*'" layout="column" layout-align="center center">
+              Drop pictures here or click to upload
+            </div>
+            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+          </div>
+          <div class="images-slide" ng-if="product.selected.images && product.selected.images.length > 0">
+            <div class="image-index">{{ product.currentImageIndex + 1 }} / {{ product.selected.images.length }}
+            </div>
+            <div class="images-container">
+              <div class="content">
+                <img ng-repeat="image in product.selected.images track by $index"
+                     ng-src="http://localhost:3000/api/Containers/{{ product.selected.id }}/download/{{ image }}"
+                     ng-if="$index == product.currentImageIndex" class="md-whiteframe-5dp">
+              </div>
+            </div>
+            <div class="toolbar" layout="row" layout-align="center center">
+              <md-button aria-label="Previous Picture" class="md-icon-button" ng-click="product.toggleImage(-1)">
+                <md-icon md-font-icon="fa fa-chevron-left"></md-icon>
+              </md-button>
+              <md-button aria-label="Delete Picture" class="md-icon-button" ng-click="product.deleteImage()">
+                <md-icon md-font-icon="fa fa-trash-o"></md-icon>
+              </md-button>
+              <md-button aria-label="Next Picture" class="md-icon-button" ng-click="product.toggleImage(1)">
+                <md-icon md-font-icon="fa fa-chevron-right"></md-icon>
+              </md-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </md-card>
+</md-content>

@@ -1,0 +1,55 @@
+<md-content class="full-width" flex ng-if="survey.selected">
+  <md-card class="padding-10">
+    <div class="header" layout="row" layout-align="start center">
+      <h3 flex class="md-subhead">Edit Survey</h3>
+      <md-button aria-label="Save" class="md-icon-button" ng-click="survey.addSurveyItem($event)">
+        <md-tooltip>Add Question</md-tooltip>
+        <md-icon md-font-icon="zmdi zmdi-playlist-plus"></md-icon>
+      </md-button>
+      <md-button aria-label="Close" class="md-icon-button" ng-click="survey.unselect()">
+        <md-tooltip>Close</md-tooltip>
+        <md-icon md-font-icon="zmdi zmdi-close"></md-icon>
+      </md-button>
+    </div>
+    <div class="survey-content" layout="column">
+      <div class="empty" ng-if="survey.selected.surveyItems.length == 0" layout="row" layout-align="center center" flex>
+        <span>No survey questions</span>
+      </div>
+      <div ng-if="survey.selected.surveyItems.length > 0" ui-tree="survey.uiTreeOption">
+        <ol ui-tree-nodes ng-model="survey.selected.surveyItems">
+          <li flex ng-repeat="surveyItem in survey.selected.surveyItems" ui-tree-node>
+            <div class="survey-item margin-5">
+              <p class="margin-10" ui-tree-handle>{{ surveyItem.question }}</p>
+              <md-radio-group class="padding-0" ng-hide="collapsed">
+                <md-radio-button class="margin-10" ng-repeat="option in surveyItem.options" value="{{ option }}" ng-disabled="true">
+                  {{ option }}
+                </md-radio-button>
+              </md-radio-group>
+              <div class="toolbar" layout="row">
+                <p class="md-caption margin-10">Drag question text to reorder</p>
+                <div class="text-right" flex>
+                  <md-button aria-label="Edit" class="md-icon-button md-mini margin-0" ng-click="survey.editSurveyItem(surveyItem, $event)">
+                    <md-tooltip>Edit</md-tooltip>
+                    <md-icon md-font-icon="zmdi zmdi-edit"></md-icon>
+                  </md-button>
+                  <md-button aria-label="Delete" class="md-icon-button md-mini margin-0" ng-click="survey.removeSurveyItem(surveyItem, $event)">
+                    <md-tooltip>Delete</md-tooltip>
+                    <md-icon md-font-icon="zmdi zmdi-delete"></md-icon>
+                  </md-button>
+                  <md-button aria-label="Hide Options" ng-hide="collapsed" class="md-icon-button md-mini margin-0" ng-click="this.toggle()">
+                    <md-tooltip>Hide Options</md-tooltip>
+                    <md-icon md-font-icon="zmdi zmdi-eye-off"></md-icon>
+                  </md-button>
+                  <md-button aria-label="Show Options" ng-hide="!collapsed" class="md-icon-button md-mini margin-0" ng-click="this.toggle()">
+                    <md-tooltip>Show Options</md-tooltip>
+                    <md-icon md-font-icon="zmdi zmdi-eye"></md-icon>
+                  </md-button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </md-card>
+</md-content>

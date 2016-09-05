@@ -1,77 +1,64 @@
-.surveys {
-  height: calc(100vh - 200px) !important;
+.survey-list {
+  background-color: #fff;
+  overflow-y: auto;
+  position: relative;
 
-  .empty {
-    font-size: 1.5em;
-    font-weight: 300;
-    color: #999;
-    height: 100%
+  @media (min-width: 600px) {
+    border-right: 1px solid #eeeeee;
   }
 
-  .survey-list {
-    background-color: #fff;
-    overflow-y: auto;
-    position: relative;
+  md-list-item.selected {
+    background: rgba(0, 0, 0, .1);
+  }
+}
 
-    @media (min-width: 600px) {
-      border-right: 1px solid #eeeeee;
-    }
+.survey-details {
+  overflow-y: auto;
+  overflow-x: hidden;
 
-    md-list-item.selected {
-      background: rgba(0,0,0,.1);
-    }
+  &.ng-enter {
+    @include slideInRight();
   }
 
-  .survey-details {
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
+  &.ng-leave {
+    @include slideOutRight();
+  }
 
-    md-card {
-      margin: 10px;
-      width: calc(100% - 20px);
+  md-content {
+    &.ng-enter {
+      @include slideInRight();
+    }
 
-      &.ng-animate {
-        transition: 1000ms linear all;
-        position:absolute;
-        margin: 0 0 10px 0;
-        top: 10px;
-        left: 10px;
-        right: 10px;
+    &.ng-leave {
+      @include slideOutRight();
+    }
+
+    .header {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 8px;
+
+      .md-subhead {
+        margin: 8px 0;
       }
+    }
 
-      &.ng-enter {
-        opacity: 0;
-        left: 150%;
-      }
+    .survey-content {
+      min-height: 300px;
+      width: 100%;
 
-      &.ng-enter-active {
-        opacity: 1;
-        left: 0;
-      }
+      .survey-item {
+        border: 1px solid #ddd;
+        border-radius: 10px;
 
-      &.ng-leave {
-        opacity: 1;
-        left: 0;
-      }
-
-      &.ng-leave-active {
-        opacity: 0;
-        left: 400%;
-      }
-
-      .header {
-        border-bottom: 1px solid #eee;
-        margin-bottom: 8px;
-
-        .md-subhead {
-          margin: 8px 0;
+        .toolbar {
+          border-top: 1px solid #ddd;
         }
       }
 
-      .survey-content {
-        min-height: 300px;
-        width: 100%;
+      .angular-ui-tree-placeholder {
+        background: #f0f9ff;
+        border: 2px dashed #bed2db;
+        box-sizing: border-box;
       }
     }
   }
@@ -80,16 +67,21 @@
 @media (min-width: 600px) {
   .add-survey-item {
     min-width: 500px;
-
-    md-input-container {
-      margin: 5px 0;
-
-      .error {
-        font-size: 12px;
-        line-height: 14px;
-        padding: 5px 5px 0 0;
-        color: #dd2c00;
-      }
+    .error {
+      font-size: 12px;
+      line-height: 14px;
+      padding: 5px 5px 0 0;
+      color: #dd2c00;
     }
+  }
+}
+
+.angular-ui-tree-drag .survey-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  .toolbar {
+    border-top: 1px solid #ddd;
   }
 }

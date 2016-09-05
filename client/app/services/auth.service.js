@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function auth(Admin, Shopkeeper, $rootScope, _){
-    function login(email, password) {
+    function loginAsShopkeeper(email, password) {
       return Shopkeeper
         .login({email: email, password: password})
         .$promise
@@ -17,7 +17,7 @@
         });
     }
 
-    function logout() {
+    function logoutAsShopkeeper() {
       return Shopkeeper
         .logout()
         .$promise
@@ -57,8 +57,8 @@
     }
 
     return {
-      login: login,
-      logout: logout,
+      loginAsShopkeeper: loginAsShopkeeper,
+      logoutAsShopkeeper: logoutAsShopkeeper,
       loginAsAdmin: loginAsAdmin,
       logoutAsAdmin: logoutAsAdmin,
       register: register

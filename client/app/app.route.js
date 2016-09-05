@@ -8,11 +8,27 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('login', {
+      .state('authentication', {
+        abstract: true,
+        templateUrl: 'app/views/authentication.html'
+      })
+      .state('authentication.shopkeeper-login', {
         url: '/login',
         templateUrl: 'app/views/login.html',
         controller: 'LoginController',
         controllerAs: 'login'
+      })
+      .state('authentication.admin-login', {
+        url: '/admin-login',
+        templateUrl: 'app/views/admin-login.html',
+        controller: 'LoginController',
+        controllerAs: 'login'
+      })
+      .state('authentication.register', {
+        url: '/register',
+        templateUrl: 'app/views/register.html',
+        controller: 'RegisterController',
+        controllerAs: 'register'
       })
       .state('main', {
         abstract: true,
@@ -64,6 +80,13 @@
         controller: 'ProductsController',
         controllerAs: 'products'
       })
+      .state('main.view.products.selected', {
+        url: '/:id',
+        templateUrl: 'app/views/product.html',
+        requireAuthentication: true,
+        controller: 'ProductController',
+        controllerAs: 'product'
+      })
       .state('main.view.surveys', {
         url: '/surveys',
         templateUrl: 'app/views/surveys.html',
@@ -71,11 +94,12 @@
         controller: 'SurveysController',
         controllerAs: 'surveys'
       })
-      .state('admin-login', {
-        url: '/admin-login',
-        templateUrl: 'app/views/admin-login.html',
-        controller: 'AdminLoginController',
-        controllerAs: 'login'
+      .state('main.view.surveys.selected', {
+        url: '/:id',
+        templateUrl: 'app/views/survey.html',
+        requireAuthentication: true,
+        controller: 'SurveyController',
+        controllerAs: 'survey'
       })
       .state('admin', {
         url: '/admin',

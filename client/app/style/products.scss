@@ -1,127 +1,77 @@
-.products {
-  height: calc(100vh - 200px) !important;
+.product-list {
+  background-color: #fff;
+  overflow-y: auto;
+  position: relative;
 
-  .empty {
-    font-size: 1.5em;
-    font-weight: 300;
-    color: #999;
-    height: 100%
+  @media (min-width: 600px) {
+    border-right: 1px solid #eeeeee;
   }
 
-  .product-list {
-    background-color: #fff;
-    overflow-y: auto;
-    position: relative;
+  md-list-item.selected {
+    background: rgba(0, 0, 0, .1);
+  }
+}
 
-    @media (min-width: 600px) {
-      border-right: 1px solid #eeeeee;
-    }
+.product-details {
+  overflow-y: auto;
+  overflow-x: hidden;
 
-    md-list-item.selected {
-      background: rgba(0,0,0,.1);
-    }
+  &.ng-enter {
+    @include slideInRight();
   }
 
-  .product-details {
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
+  &.ng-leave {
+    @include slideOutRight();
+  }
 
-    md-card {
-      margin: 10px;
-      width: calc(100% - 20px);
+  md-content {
+    &.ng-enter {
+      @include slideInRight();
+    }
 
-      &.ng-animate {
-        transition: 1000ms linear all;
-        position:absolute;
-        margin: 0 0 10px 0;
-        top: 10px;
-        left: 10px;
-        right: 10px;
+    &.ng-leave {
+      @include slideOutRight();
+    }
+
+    .header {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 8px;
+
+      .md-subhead {
+        margin: 8px 0;
       }
+    }
 
-      &.ng-enter {
-        opacity: 0;
-        left: 150%;
-      }
+    form {
+      .images-slide {
+        margin-top: 20px;
 
-      &.ng-enter-active {
-        opacity: 1;
-        left: 0;
-      }
-
-      &.ng-leave {
-        opacity: 1;
-        left: 0;
-      }
-
-      &.ng-leave-active {
-        opacity: 0;
-        left: 400%;
-      }
-
-      .header {
-        border-bottom: 1px solid #eee;
-        margin-bottom: 8px;
-
-        .md-subhead {
-          margin: 8px 0;
+        .image-index {
+          text-align: center;
+          padding: 3px;
         }
-      }
 
-      form {
-        height: auto;
+        .images-container {
+          width: 100%;
+          @include aspect-ratio(16, 9);
 
-        md-input-container {
-          margin-top: 10px;
-          margin-bottom: 0;
-
-          .drop-box {
-            background: #F8F8F8;
-            border: 5px dashed #DDD;
-            height: 100px;
-            width: 100%;
+          .content {
             text-align: center;
-            padding: 30px;
-            margin: 10px 0;
-            cursor: pointer;
-            box-sizing: border-box;
 
-            &.dragover {
-              border: 5px dashed blue;
+            img {
+              width: auto;
+              height: auto;
+              max-width: 100%;
+              max-height: 100%;
             }
           }
+        }
 
-          .images-slide {
-            margin-top: 20px;
-
-            .image-index {
-              text-align: center;
-              padding: 3px;
-            }
-
-            .images-container {
-              width: 100%;
-              @include aspect-ratio(16, 9);
-
-              .content {
-                text-align: center;
-
-                img {
-                  width: auto;
-                  height: auto;
-                  max-width: 100%;
-                  max-height: 100%;
-                }
-              }
-            }
-
-            .toolbar {
-              margin-top: 5px;
-            }
-          }
+        .toolbar {
+          margin-top: 5px;
         }
       }
     }
   }
 }
+

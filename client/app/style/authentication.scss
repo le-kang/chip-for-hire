@@ -1,0 +1,42 @@
+#authentication {
+  overflow: auto;
+
+  &.ng-enter {
+    @include fadeIn($delay: 0.5s);
+  }
+  &.ng-leave {
+    @include fadeOut();
+  }
+
+  md-card {
+    padding: 0 !important;
+    overflow: auto;
+    width: 100%;
+    max-width: 500px !important;
+
+    &.layout-column {
+      md-toolbar {
+        height: 140px !important;
+      }
+    }
+
+    &.layout-row {
+      md-toolbar {
+        width: auto;
+        padding: 20px;
+
+        img {
+          background-color: rgba(255,255,255,0.87);
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    md-content {
+      background-color: #fff !important;
+    }
+  }
+}
+

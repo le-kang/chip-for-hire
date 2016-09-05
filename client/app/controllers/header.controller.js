@@ -9,17 +9,16 @@
   function HeaderController($mdSidenav, auth, $state) {
     var vm = this;
     vm.toggleMenu = toggleMenu;
-    vm.logoutAsAdmin = logoutAsAdmin;
+    vm.logout = logout;
 
     function toggleMenu() {
       $mdSidenav('menu').toggle();
     }
 
-    function logoutAsAdmin() {
-      auth
-        .logoutAsAdmin()
+    function logout(role) {
+      auth['logoutAs' + role]()
         .then(function() {
-          $state.go('admin-login');
+          $state.go(role == 'Admin' ? 'authentication.admin-login' : 'authentication.shopkeeper-login');
         });
     }
   }

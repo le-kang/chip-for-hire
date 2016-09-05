@@ -8,8 +8,7 @@
   <md-button ng-if="$root.currentUser.role != 'Admin'" aria-label="Menu" class="md-icon-button md-primary" ng-click="header.toggleMenu()">
     <md-icon md-font-icon="zmdi zmdi-menu"></md-icon>
   </md-button>
-  <md-button ng-if="$root.currentUser.role == 'Admin'" aria-label="Menu" class="md-icon-button md-primary" ng-click="header.logoutAsAdmin()">
-    <md-tooltip>Logout</md-tooltip>
+  <md-button aria-label="Logout" class="md-icon-button md-primary" ng-click="header.logout($root.currentUser.role)">
     <md-icon md-font-icon="fa fa-sign-out"></md-icon>
   </md-button>
 </div>

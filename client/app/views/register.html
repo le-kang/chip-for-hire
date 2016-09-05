@@ -1,0 +1,28 @@
+<md-card layout="row">
+  <md-toolbar class="text-center" hide-xs layout="column" layout-align="center center">
+    <img class="md-whiteframe-5dp" ng-src="assets/images/reem.png">
+    <h2 class="logo margin-10">Chip for Hire</h2>
+  </md-toolbar>
+  <md-content flex="noshrink">
+    <form class="padding-10" name="signUpForm" ng-submit="register.register()" layout="column">
+      <h2 show-xs hide-gt-xs class="logo margin-10 text-center">Chip for Hire</h2>
+      <h3 class="text-center margin-10">Register</h3>
+      <div flex layout="column" layout-align="center center">
+        <md-input-container class="full-width">
+          <label>Shop name</label>
+          <input type="text" required ng-model="register.name">
+        </md-input-container>
+        <md-input-container class="full-width">
+          <label>Email</label>
+          <input type="email" required ng-model="register.email">
+        </md-input-container>
+        <md-input-container class="full-width">
+          <label>Password</label>
+          <input type="password" required ng-model="register.password">
+        </md-input-container>
+        <md-button class="md-primary md-raised full-width" type="submit">Sign up</md-button>
+        <md-button class="md-primary full-width line-height-normal" ng-href="#login">Already have an account?<br/> Login here</md-button>
+      </div>
+    </form>
+  </md-content>
+</md-card>

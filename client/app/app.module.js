@@ -9,6 +9,7 @@
       'ngSanitize',
       'ui.router',
       'lbServices',
-      'ngFileUpload'
+      'ngFileUpload',
+      'ui.tree'
     ])
 })();

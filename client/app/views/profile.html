@@ -9,7 +9,7 @@
   <div class="widget-content padding-10 profile">
     <form ng-if="profile.currentUser" name="profileForm">
       <div flex layout="row" layout-xs="column" layout-wrap>
-        <md-input-container flex="100">
+        <div flex="100">
           <p class="label" flex="100">Shop Logo</p>
           <div class="logo-upload-container" flex="100" layout="row" layout-xs="column" layout-align="center center">
             <div class="shop-logo">
@@ -19,12 +19,12 @@
             <div class="logo-upload" flex>
               <div ngf-drop ngf-select ng-model="profile.newLogo" class="drop-box"
                    ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
-                   accept="image/*" ngf-pattern="'image/*'">
+                   accept="image/*" ngf-pattern="'image/*'" layout="column" layout-align="center center">
                 Drop logo here or click to upload</div>
               <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
             </div>
           </div>
-        </md-input-container>
+        </div>
         <md-input-container flex="50" flex-xs="100">
           <label>Shop Name</label>
           <input type="text" ng-model="profile.currentUser.name" required>

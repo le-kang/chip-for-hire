@@ -6,16 +6,13 @@
     .controller('SurveysController', SurveysController);
 
   /** ngInject */
-  function SurveysController($rootScope, Survey, SurveyItem, $mdDialog, $mdMedia, _) {
+  function SurveysController($rootScope, Survey, $mdDialog, $mdMedia) {
     var vm = this;
     vm.list = [];
+    vm.fetching = true;
     vm.selected = null;
     vm.smallScreen = $mdMedia('xs');
-
     vm.add = add;
-    vm.select = select;
-    vm.unselect = unselect;
-    vm.addSurveyItem = addSurveyItem;
 
     Survey
       .find({
@@ -23,12 +20,20 @@
           where: {
             shopkeeperId: $rootScope.currentUser.id
           },
-          include: ['surveyItems']
+          include: {
+            relation: 'surveyItems',
+            scope: {
+              order: 'order ASC'
+            }
+          }
         }
       })
       .$promise
       .then(function(surveys) {
         vm.list = surveys;
+        vm.fetching = false;
+      }, function() {
+        vm.fetching = false;
       });
 
     function add($event) {
@@ -50,67 +55,7 @@
             survey.surveyItems = [];
             vm.list.push(survey);
           })
-      }, function() {
-
       });
-    }
-
-    function addSurveyItem($event) {
-      $mdDialog
-        .show({
-          templateUrl: 'app/views/add-survey-item.html',
-          controller: surveyItemController,
-          controllerAs: 'surveyItem',
-          targetEvent: $event,
-          locals: {
-            surveyId: vm.selected.id
-          }
-        })
-        .then(function(surveyItem) {
-          vm.selected.surveyItems.push(surveyItem);
-        });
-
-      function surveyItemController(surveyId) {
-        var vm = this;
-        vm.question = '';
-        vm.option1 = '';
-        vm.option2 = '';
-        vm.option3 = '';
-        vm.option4 = '';
-        vm.create = create;
-        vm.cancel = cancel;
-
-        function create() {
-          var options = _.uniq(_.compact([vm.option1, vm.option2, vm.option3, vm.option4]));
-          console.log(options);
-          if (options.length < 1) {
-            return;
-          }
-          SurveyItem
-            .create({
-              question: vm.question,
-              options: _.compact(options),
-              surveyId: surveyId
-            })
-            .$promise
-            .then(function(surveyItem) {
-              $mdDialog.hide(surveyItem)
-            })
-        }
-
-        function cancel() {
-          console.log(11);
-          $mdDialog.cancel();
-        }
-      }
-    }
-
-    function select(survey) {
-      vm.selected = survey;
-    }
-
-    function unselect() {
-      vm.selected = null;
     }
   }
 

@@ -43,16 +43,16 @@
         } else {
           if (!$rootScope.currentUser) {
             event.preventDefault();
-            $rootScope.state = route.requireAdmin ? 'admin-login' : 'login';
+            $rootScope.state = route.requireAdmin ? 'authentication.admin-login' : 'authentication.shopkeeper-login';
             $state.go($rootScope.state);
           } else {
             if (route.requireAdmin && $rootScope.currentUser.role != 'Admin') {
               event.preventDefault();
-              $rootScope.state = 'admin-login';
+              $rootScope.state = 'authentication.admin-login';
               $state.go($rootScope.state);
             } else if (!route.requireAdmin && $rootScope.currentUser.role == 'Admin') {
               event.preventDefault();
-              $rootScope.state = 'login';
+              $rootScope.state = 'authentication.shopkeeper-login';
               $state.go($rootScope.state);
             }
           }

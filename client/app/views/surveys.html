@@ -1,4 +1,4 @@
-<div class="widget md-whiteframe-2dp profile" flex>
+<div class="widget md-whiteframe-2dp" flex>
   <div class="widget-header" layout="row" layout-align="start center">
     <h3 class="md-subhead" flex>My Surveys</h3>
     <md-button aria-label="Add Survey" class="md-icon-button" ng-click="surveys.add()">
@@ -6,51 +6,25 @@
       <md-icon md-font-icon="zmdi zmdi-collection-plus"></md-icon>
     </md-button>
   </div>
-  <md-content class="widget-content surveys" layout="row">
-    <div class="survey-list" flex="50" flex-xs="100" layout="column" ng-hide="surveys.smallScreen && surveys.selected">
-      <div class="empty" ng-if="surveys.list.length == 0" layout="row" layout-align="center center">
+  <md-content class="widget-content full-height" layout="row">
+    <div class="survey-list" flex layout="column" ng-hide="surveys.smallScreen && surveys.selected">
+      <div class="empty" flex ng-if="surveys.list.length == 0" layout="column" layout-align="center center">
         <span>No survey found</span>
       </div>
       <div ng-if="surveys.list.length > 0" layout="column" flex>
         <md-list flex>
-          <md-list-item ng-repeat="survey in surveys.list" ng-class="{'selected': survey.id == surveys.selected.id}" ng-click="surveys.select(survey)">
+          <md-list-item ng-repeat="survey in surveys.list" ng-class="{'selected': surveys.selected && survey.id == surveys.selected.id}" ng-href="#surveys/{{ survey.id }}">
             <p>{{ survey.name }}</p>
             <md-divider></md-divider>
           </md-list-item>
         </md-list>
       </div>
     </div>
-    <div class="survey-details" flex="50" flex-xs="100" ng-hide="surveys.smallScreen" ng-show="!surveys.smallScreen || (surveys.smallScreen && surveys.selected)">
-      <div class="empty" ng-if="!surveys.selected" layout="row" layout-align="center center">
-        <span>No survey selected</span>
-      </div>
-      <div>
-        <md-card ng-if="surveys.selected" ng-repeat="survey in surveys.list | filter: surveys.selected.id" class="survey-edit md-whiteframe-1 padding-10">
-          <div class="header" layout="row" layout-align="start center">
-            <h3 flex class="md-subhead">Edit Survey</h3>
-            <md-button aria-label="Save" class="md-icon-button" ng-click="surveys.addSurveyItem()">
-              <md-tooltip>Add Question</md-tooltip>
-              <md-icon md-font-icon="zmdi zmdi-playlist-plus"></md-icon>
-            </md-button>
-            <md-button aria-label="Close" class="md-icon-button" ng-click="surveys.unselect()">
-              <md-tooltip>Close</md-tooltip>
-              <md-icon md-font-icon="zmdi zmdi-close"></md-icon>
-            </md-button>
-          </div>
-          <div class="survey-content" layout="column">
-            <div class="empty" ng-if="surveys.selected.surveyItems.length == 0" layout="row" layout-align="center center" flex>
-              <span>No survey questions</span>
-            </div>
-            <div ng-if="surveys.selected.surveyItems.length > 0" layout="column">
-              <div class="padding-5" flex ng-repeat="surveyItem in surveys.selected.surveyItems">
-                <p>{{ surveyItem.question }}</p>
-                <md-radio-group>
-                  <md-radio-button ng-repeat="option in surveyItem.options" value="{{ option }}">{{ option }}</md-radio-button>
-                </md-radio-group>
-              </div>
-            </div>
-          </div>
-        </md-card>
+    <div class="animate-wrapper" flex ng-hide="surveys.smallScreen" ng-show="!surveys.smallScreen || (surveys.smallScreen && surveys.selected)" layout="column" layout-align="start center">
+      <div flex ui-view layout="column" layout-align="start center" class="survey-details full-width">
+        <div class="empty" flex layout="column" layout-align="center center">
+          <span>No survey selected</span>
+        </div>
       </div>
     </div>
   </md-content>

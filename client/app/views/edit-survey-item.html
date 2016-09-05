@@ -1,0 +1,23 @@
+<md-dialog aria-label="Add/Edit Survey Item">
+  <form name="surveyItemForm" ng-submit="surveyItem.submit()">
+    <md-dialog-content class="md-dialog-content add-survey-item">
+      <h2 class="md-title">{{surveyItem.id ? 'Edit' : 'Add'}} Survey Question</h2>
+      <div layout="column">
+        <md-input-container class="full-width">
+          <label>Question</label>
+          <textarea rows="1" md-select-on-focus md-maxlength="200" ng-model="surveyItem.question" required></textarea>
+        </md-input-container>
+        <md-chips name="options" ng-model="surveyItem.options" placeholder="Add options"></md-chips>
+        <p class="md-caption">Press <b>Enter</b> to add an option</p>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button class="md-primary" ng-click="surveyItem.cancel()">
+        Cancel
+      </md-button>
+      <md-button type="submit" class="md-primary" ng-disabled="surveyItemForm.$invalid || surveyItem.options.length < 2">
+        Submit
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
