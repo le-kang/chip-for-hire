@@ -30,7 +30,7 @@
       if ($scope.$parent.products.fetching) {
         $timeout(getSelected, 100)
       } else {
-        vm.selected = _.find($scope.$parent.products.list, {'id': $stateParams.id});
+        vm.selected = _.find($scope.$parent.products.list, { id: $stateParams.id });
         if (!vm.selected) {
           $state.go('main.view.products');
           $mdToast.show(

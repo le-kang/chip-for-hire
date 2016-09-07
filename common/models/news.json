@@ -16,7 +16,7 @@
       "required": true
     },
     "createdAt": {
-      "type": "string",
+      "type": "date",
       "default": "$now"
     }
   },
@@ -32,7 +32,7 @@
     {
       "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "admin",
+      "principalId": "Admin",
       "permission": "ALLOW"
     },
     {

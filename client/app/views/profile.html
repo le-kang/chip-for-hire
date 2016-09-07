@@ -14,7 +14,7 @@
           <div class="logo-upload-container" flex="100" layout="row" layout-xs="column" layout-align="center center">
             <div class="shop-logo">
               <img ng-if="!profile.currentUser.logo" ng-src="assets/images/awaiting-logo.png">
-              <img ng-if="profile.currentUser.logo" ng-src="http://localhost:3000/api/Containers/{{ profile.currentUser.id }}/download/{{ profile.currentUser.logo }}">
+              <img ng-if="profile.currentUser.logo" ng-src="/api/Containers/{{ profile.currentUser.id }}/download/{{ profile.currentUser.logo }}">
             </div>
             <div class="logo-upload" flex>
               <div ngf-drop ngf-select ng-model="profile.newLogo" class="drop-box"

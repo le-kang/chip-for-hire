@@ -73,6 +73,13 @@
         controller: 'ActivitiesController',
         controllerAs: 'activities'
       })
+      .state('main.view.activities.selected', {
+        url: '/:id',
+        templateUrl: 'app/views/activity.html',
+        requireAuthentication: true,
+        controller: 'ActivityController',
+        controllerAs: 'activity'
+      })
       .state('main.view.products', {
         url: '/products',
         templateUrl: 'app/views/products.html',

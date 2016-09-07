@@ -1,0 +1,44 @@
+<div class="widget md-whiteframe-2dp" flex>
+  <div class="widget-header" layout="row" layout-align="start center">
+    <h3 class="md-subhead" flex>My Activities</h3>
+  </div>
+  <md-content class="widget-content full-height" layout="row">
+    <div class="activity-list" flex layout="column" ng-hide="activities.smallScreen && activities.selected">
+      <div class="empty" flex ng-if="activities.upcomings.length + activities.ongoings.length + activities.archives.length == 0" layout="column" layout-align="center center">
+        <span>No activity found</span>
+      </div>
+      <div ng-if="activities.upcomings.length || activities.ongoings.length || activities.archives.length" layout="column" flex>
+        <md-list flex>
+          <div ng-if="activities.ongoings.length">
+            <md-subheader class="md-primary">Current Activities</md-subheader>
+            <md-list-item ng-repeat="activity in activities.ongoings" ng-class="{'selected': activities.selected && activity.id == activities.selected.id}" ng-href="#activities/{{ activity.id }}">
+              <p>{{ activity.timeSlot.date.format('DD/MM/YYYY') }} {{ activity.timeSlot.hour }}:00</p>
+              <md-divider></md-divider>
+            </md-list-item>
+          </div>
+          <div ng-if="activities.upcomings.length">
+            <md-subheader class="md-primary">Upcoming Activities</md-subheader>
+            <md-list-item ng-repeat="activity in activities.upcomings" ng-class="{'selected': activities.selected && activity.id == activities.selected.id}" ng-href="#activities/{{ activity.id }}">
+              <p>{{ activity.timeSlot.date.format('DD/MM/YYYY') }} {{ activity.timeSlot.hour }}:00</p>
+              <md-divider></md-divider>
+            </md-list-item>
+          </div>
+          <div ng-if="activities.archives.length">
+            <md-subheader class="md-primary">Previous Activities</md-subheader>
+            <md-list-item ng-repeat="activity in activities.archives" ng-class="{'selected': activities.selected && activity.id == activities.selected.id}" ng-href="#activities/{{ activity.id }}">
+              <p>{{ activity.timeSlot.date.format('DD/MM/YYYY') }} {{ activity.timeSlot.hour }}:00</p>
+              <md-divider></md-divider>
+            </md-list-item>
+          </div>
+        </md-list>
+      </div>
+    </div>
+    <div class="animate-wrapper" flex ng-hide="activities.smallScreen" ng-show="!activities.smallScreen || (activities.smallScreen && activities.selected)" layout="column" layout-align="start center">
+      <div flex ui-view layout="column" layout-align="start center" class="activity-details full-width">
+        <div class="empty" flex layout="column" layout-align="center center">
+          <span>No activity selected</span>
+        </div>
+      </div>
+    </div>
+  </md-content>
+</div>

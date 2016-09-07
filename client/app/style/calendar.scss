@@ -1,4 +1,4 @@
-div[calendar] {
+calendar {
   ul.week {
     display: table;
     box-sizing: border-box;
@@ -50,11 +50,6 @@ div[calendar] {
         border-radius: 50%;
         cursor: pointer;
 
-        &.current {
-          color: #fff;
-          background-color: rgb(0, 150, 136);
-        }
-
         &.available {
           color: #fff;
           background-color: rgb(76, 175, 80);
@@ -65,19 +60,15 @@ div[calendar] {
           background-color: rgb(255,87,34);
         }
 
-        &.booked {
+        &.current {
           color: #fff;
-          background-color: rgb(16,108,200);
+          background-color: rgb(16,108,200);;
         }
 
         &.disabled {
           color: #999 !important;
           background-color: #eee !important;
           cursor: not-allowed;
-
-          &:focus {
-            outline: none;
-          }
         }
 
         &:focus {
@@ -145,11 +136,7 @@ div[calendar] {
         background-color: #ffcdd2;
       }
 
-      &.disabled {
-        background-color: #ddd;
-      }
-
-      &.booked {
+      &.available {
         background-color: #c8e6c9;
       }
     }

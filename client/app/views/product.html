@@ -37,7 +37,7 @@
             <div class="images-container">
               <div class="content">
                 <img ng-repeat="image in product.selected.images track by $index"
-                     ng-src="http://localhost:3000/api/Containers/{{ product.selected.id }}/download/{{ image }}"
+                     ng-src="/api/Containers/{{ product.selected.id }}/download/{{ image }}"
                      ng-if="$index == product.currentImageIndex" class="md-whiteframe-5dp">
               </div>
             </div>

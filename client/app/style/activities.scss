@@ -1,0 +1,46 @@
+.activity-list {
+  background-color: #fff;
+  overflow-y: auto;
+  position: relative;
+
+  @media (min-width: 600px) {
+    border-right: 1px solid #eeeeee;
+  }
+
+  md-list-item.selected {
+    background: rgba(0, 0, 0, .1);
+  }
+}
+
+.activity-details {
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &.ng-enter {
+    @include slideInRight();
+  }
+
+  &.ng-leave {
+    @include slideOutRight();
+  }
+
+  md-content {
+    &.ng-enter {
+      @include slideInRight();
+    }
+
+    &.ng-leave {
+      @include slideOutRight();
+    }
+
+    .header {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 8px;
+
+      .md-subhead {
+        margin: 8px 0;
+      }
+    }
+  }
+}
+

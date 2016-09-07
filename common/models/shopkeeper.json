@@ -31,6 +31,11 @@
       "type": "hasMany",
       "model": "Survey",
       "foreignKey": ""
+    },
+    "activities": {
+      "type": "hasMany",
+      "model": "Activity",
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -48,23 +53,9 @@
       "property": "create"
     },
     {
-      "accessType": "EXECUTE",
+      "accessType": "*",
       "principalType": "ROLE",
       "principalId": "$owner",
-      "permission": "ALLOW",
-      "property": "updateAttributes"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW",
-      "property": "uploadLogo"
-    },
-    {
-      "accessType": "READ",
-      "principalType": "ROLE",
-      "principalId": "$authenticated",
       "permission": "ALLOW"
     }
   ],

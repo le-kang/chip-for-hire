@@ -23,7 +23,12 @@
               .textContent('Account "' + vm.email + '" created')
               .hideDelay(3000)
           );
-          login();
+          auth.loginAsShopkeeper(vm.email, vm.password)
+            .then(function() {
+              $state.go('main.view.home');
+            }, function() {
+
+            });
         }, function() {
 
         });

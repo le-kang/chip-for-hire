@@ -1,4 +1,8 @@
 #header {
   background-color: #fff;
   color: #222;
+
+  .md-button[disabled] {
+    color: rgba(0,0,0,0.87) !important;
+  }
 }

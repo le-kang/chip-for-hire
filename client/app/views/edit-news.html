@@ -1,0 +1,25 @@
+<md-dialog aria-label="Add/Edit News">
+  <form name="newsForm" ng-submit="news.submit()">
+    <md-dialog-content class="md-dialog-content">
+      <h2 class="md-title">{{news.id ? 'Edit' : 'Add'}} News</h2>
+      <div layout="column">
+        <md-input-container class="full-width">
+          <label>Title</label>
+          <input type="text" md-maxlength="80" ng-model="news.title" required>
+        </md-input-container>
+        <md-input-container class="full-width">
+          <label>Content</label>
+          <textarea rows="3" md-select-on-focus md-maxlength="500" ng-model="news.content" required></textarea>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button class="md-primary" ng-click="news.cancel()">
+        Cancel
+      </md-button>
+      <md-button type="submit" class="md-primary" ng-disabled="newsForm.$invalid">
+        Submit
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

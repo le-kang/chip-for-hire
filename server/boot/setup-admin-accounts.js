@@ -29,7 +29,7 @@
 //           if (err) return err;
 //
 //           Role.create({
-//             name: 'admin'
+//             name: 'Admin'
 //           }, function(err, role) {
 //             if (err) throw err;
 //

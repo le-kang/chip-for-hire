@@ -23,7 +23,7 @@
       if ($scope.$parent.surveys.fetching) {
         $timeout(getSelected, 100)
       } else {
-        vm.selected = _.find($scope.$parent.surveys.list, {'id': $stateParams.id});
+        vm.selected = _.find($scope.$parent.surveys.list, { id: $stateParams.id });
         if (!vm.selected) {
           $state.go('main.view.surveys');
           $mdToast.show(
@@ -112,7 +112,6 @@
     }
 
     function setItemsOrder() {
-      console.log(vm.selected.surveyItems);
       var jobList = [];
       _.forEach(vm.selected.surveyItems, function(item, index) {
         var oldOrder = item.order;

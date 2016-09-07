@@ -13,16 +13,6 @@
     "hour": {
       "type": "string",
       "required": true
-    },
-    "reserved": {
-      "type": "boolean",
-      "required": true,
-      "default": false
-    },
-    "confirmed": {
-      "type": "boolean",
-      "required": true,
-      "default": false
     }
   },
   "validations": [],
@@ -41,9 +31,9 @@
       "permission": "DENY"
     },
     {
-      "accessType": "WRITE",
+      "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "admin",
+      "principalId": "Admin",
       "permission": "ALLOW"
     },
     {

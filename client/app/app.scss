@@ -134,6 +134,14 @@ md-input-container {
   margin: 10px 0 0;
 }
 
+md-dialog {
+  max-width: 800px;
+}
+
+md-select {
+  margin-bottom: 15px !important;
+}
+
 .label {
   padding-left: 3px;
   margin: 5px 0;
@@ -174,6 +182,7 @@ md-input-container {
     box-sizing: border-box;
     position: relative;
     overflow-x: hidden;
+    height: 500px;
 
     &.full-height {
       height: calc(100vh - 146px) !important;

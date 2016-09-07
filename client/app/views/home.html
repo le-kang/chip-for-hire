@@ -1,20 +1,28 @@
 <div class="widget md-whiteframe-2dp calendar" flex>
   <div class="widget-header" layout="row" layout-align="start center">
     <h3 class="md-subhead" flex>Chip's Availability</h3>
-    <md-button aria-label="Refresh" class="md-icon-button" ng-click="">
-      <md-icon md-font-icon="zmdi zmdi-refresh"></md-icon>
-    </md-button>
   </div>
   <div class="widget-content">
-    <div calendar></div>
+    <calendar time-slots="home.timeSlots" activities="home.activities" products="home.products" surveys="home.surveys"></calendar>
   </div>
 </div>
 <div class="widget md-whiteframe-2dp news" flex>
   <div class="widget-header" layout="row" layout-align="start center">
     <h3 class="md-subhead" flex>News</h3>
-    <md-button aria-label="Refresh" class="md-icon-button" ng-click="">
-      <md-icon md-font-icon="zmdi zmdi-refresh"></md-icon>
-    </md-button>
   </div>
-  <div class="widget-content"></div>
+  <div class="widget-content">
+    <div class="news-list" flex layout="column">
+      <md-list flex>
+        <md-list-item class="md-3-line" ng-repeat="news in home.newsList">
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ news.title }}</h3>
+            <h4>{{ news.content }}</h4>
+            <p>{{ home.moment(news.createdAt).format('DD/MM/YYYY HH:mm') }}</p>
+          </div>
+          <md-button class="md-secondary" ng-click="home.viewNews(news)">More Info</md-button>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+    </div>
+  </div>
 </div>
