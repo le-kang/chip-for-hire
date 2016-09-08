@@ -1,0 +1,6 @@
+{
+  "port": 8080,
+  "GCLOUD_PROJECT": "grounded-atrium-126823",
+  "CLOUD_BUCKET": "grounded-atrium-126823",
+  "DATA_BACKEND": "datastore"
+}
