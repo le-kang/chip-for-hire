@@ -41,16 +41,7 @@
       ]
     }
   },
-  "files": {
-    "loopback#static": [
-      {
-        "params": "$!../.tmp/serve"
-      },
-      {
-        "params": "$!../client"
-      }
-    ]
-  },
+  "files": {},
   "final": {
     "loopback#urlNotFound": {}
   },

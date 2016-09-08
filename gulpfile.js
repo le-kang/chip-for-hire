@@ -153,9 +153,7 @@ gulp.task('serve', ['watch'], function() {
 /**
  * Build Task
  */
-gulp.task('build', ['html', 'fonts', 'other'], function() {
-  gulp.start('nodemon');
-});
+gulp.task('build', ['html', 'fonts', 'other']);
 
 /**
  * Clean Task
@@ -179,7 +177,7 @@ gulp.task('nodemon', function() {
  * Default Task
  */
 gulp.task('default', ['clean'], function() {
-  gulp.start('nodemon');
+  gulp.start('build');
 });
 
 

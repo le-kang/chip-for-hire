@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
+    "postinstall": "bower install && gulp",
     "start": "node .",
+    "deploy": "NODE_ENV=production node .",
     "pretest": "eslint .",
     "posttest": "nsp check"
   },

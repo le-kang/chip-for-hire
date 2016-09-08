@@ -1,0 +1,12 @@
+{
+  "mongoDB": {
+    "host": "ds021326.mlab.com",
+    "port": 21326,
+    "url": "mongodb://chip:magiclab@ds021326.mlab.com:21326/chip",
+    "database": "chip",
+    "name": "mongoDB",
+    "user": "chip",
+    "password": "magiclab",
+    "connector": "mongodb"
+  }
+}
