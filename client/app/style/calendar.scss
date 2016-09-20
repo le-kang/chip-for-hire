@@ -119,6 +119,12 @@ calendar {
     margin: 0;
   }
 
+  @media (max-width: 599px) {
+    h2 {
+      font-size: 1em;
+    }
+  }
+
   .md-button {
     min-height: 24px;
     min-width: 0;

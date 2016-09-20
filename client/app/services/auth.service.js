@@ -7,42 +7,31 @@
 
   /** @ngInject */
   function auth(Admin, Shopkeeper, $rootScope, _){
-    function loginAsShopkeeper(email, password) {
-      return Shopkeeper
-        .login({email: email, password: password})
+    function login(role, email, password, rememberMe) {
+      var User = role == 'Admin' ? Admin: Shopkeeper;
+      return User
+        .login({
+          rememberMe: rememberMe
+        },{
+          email: email,
+          password: password
+        })
         .$promise
         .then(function(response) {
-          $rootScope.currentUser = _.extend(response.user, { role: 'Shopkeeper' });
-          sessionStorage.setItem('currentUser', JSON.stringify($rootScope.currentUser));
+          $rootScope.currentUser = _.extend(response.user, { role: role });
+          var storage = rememberMe ? localStorage : sessionStorage;
+          storage.setItem('currentUser', JSON.stringify($rootScope.currentUser));
         });
     }
 
-    function logoutAsShopkeeper() {
-      return Shopkeeper
+    function logout(role) {
+      var User = role == 'Admin' ? Admin: Shopkeeper;
+      return User
         .logout()
         .$promise
         .then(function() {
-          $rootScope.currentUser = null;
-          sessionStorage.removeItem('currentUser');
-        });
-    }
-
-    function loginAsAdmin(email, password) {
-      return Admin
-        .login({email: email, password: password})
-        .$promise
-        .then(function(response) {
-          $rootScope.currentUser = _.extend(response.user, { role: 'Admin' });
-          sessionStorage.setItem('currentUser', JSON.stringify($rootScope.currentUser));
-        });
-    }
-
-    function logoutAsAdmin() {
-      return Admin
-        .logout()
-        .$promise
-        .then(function() {
-          sessionStorage.removeItem('currentUser');
+          localStorage.clear();
+          sessionStorage.clear();
         });
     }
 
@@ -57,10 +46,8 @@
     }
 
     return {
-      loginAsShopkeeper: loginAsShopkeeper,
-      logoutAsShopkeeper: logoutAsShopkeeper,
-      loginAsAdmin: loginAsAdmin,
-      logoutAsAdmin: logoutAsAdmin,
+      login: login,
+      logout: logout,
       register: register
     };
   }

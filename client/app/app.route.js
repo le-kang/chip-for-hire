@@ -54,59 +54,59 @@
       .state('main.view.home', {
         url: '/',
         templateUrl: 'app/views/home.html',
-        requireAuthentication: true,
         controller: 'HomeController',
-        controllerAs: 'home'
+        controllerAs: 'home',
+        access: 'Shopkeeper'
       })
 
       .state('main.view.profile', {
         url: '/profile',
         templateUrl: 'app/views/profile.html',
-        requireAuthentication: true,
         controller: 'ProfileController',
-        controllerAs: 'profile'
+        controllerAs: 'profile',
+        access: 'Shopkeeper'
       })
       .state('main.view.activities', {
         url: '/activities',
         templateUrl: 'app/views/activities.html',
-        requireAuthentication: true,
         controller: 'ActivitiesController',
-        controllerAs: 'activities'
+        controllerAs: 'activities',
+        access: 'Shopkeeper'
       })
       .state('main.view.activities.selected', {
         url: '/:id',
         templateUrl: 'app/views/activity.html',
-        requireAuthentication: true,
         controller: 'ActivityController',
-        controllerAs: 'activity'
+        controllerAs: 'activity',
+        access: 'Shopkeeper'
       })
       .state('main.view.products', {
         url: '/products',
         templateUrl: 'app/views/products.html',
-        requireAuthentication: true,
         controller: 'ProductsController',
-        controllerAs: 'products'
+        controllerAs: 'products',
+        access: 'Shopkeeper'
       })
       .state('main.view.products.selected', {
         url: '/:id',
         templateUrl: 'app/views/product.html',
-        requireAuthentication: true,
         controller: 'ProductController',
-        controllerAs: 'product'
+        controllerAs: 'product',
+        access: 'Shopkeeper'
       })
       .state('main.view.surveys', {
         url: '/surveys',
         templateUrl: 'app/views/surveys.html',
-        requireAuthentication: true,
         controller: 'SurveysController',
-        controllerAs: 'surveys'
+        controllerAs: 'surveys',
+        access: 'Shopkeeper'
       })
       .state('main.view.surveys.selected', {
         url: '/:id',
         templateUrl: 'app/views/survey.html',
-        requireAuthentication: true,
         controller: 'SurveyController',
-        controllerAs: 'survey'
+        controllerAs: 'survey',
+        access: 'Shopkeeper'
       })
       .state('admin', {
         url: '/admin',
@@ -114,7 +114,8 @@
         requireAuthentication: true,
         requireAdmin: true,
         controller: 'AdminController',
-        controllerAs: 'admin'
+        controllerAs: 'admin',
+        access: 'Admin'
       });
 
     $urlRouterProvider.otherwise('/');

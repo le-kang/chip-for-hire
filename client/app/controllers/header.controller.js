@@ -16,7 +16,7 @@
     }
 
     function logout(role) {
-      auth['logoutAs' + role]()
+      auth.logout(role)
         .then(function() {
           $state.go(role == 'Admin' ? 'authentication.admin-login' : 'authentication.shopkeeper-login');
         });

@@ -11,10 +11,11 @@
     vm.name = '';
     vm.email = '';
     vm.password = '';
+    vm.rememberMe = false;
     vm.login = login;
 
     function login(role) {
-      auth['loginAs' + role](vm.email, vm.password)
+      auth.login(role, vm.email, vm.password, vm.rememberMe)
         .then(function() {
           $state.go(role == 'Admin' ? 'admin' : 'main.view.home');
         }, function() {

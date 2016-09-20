@@ -4,7 +4,7 @@
 </div>
 <div class="menu-items">
   <md-list flex>
-    <md-list-item ng-click="menu.navigate('main.view.home')" ng-class="{ 'active': $root.state === 'main.view.home' }">
+    <md-list-item ng-click="menu.navigate('main.view.home')" ng-class="{ 'active': menu.isCurrentState('main.view.home') }">
       <span class="zmdi-hc-stack">
         <i class="zmdi zmdi-square-o zmdi-hc-stack-2x"></i>
         <i class="zmdi zmdi-home zmdi-hc-stack-1x"></i>
@@ -12,7 +12,7 @@
       <p>Home</p>
     </md-list-item>
     <md-divider></md-divider>
-    <md-list-item ng-click="menu.navigate('main.view.profile')" ng-class="{ 'active': $root.state === 'main.view.profile' }">
+    <md-list-item ng-click="menu.navigate('main.view.profile')" ng-class="{ 'active': menu.isCurrentState('main.view.profile') }">
       <span class="zmdi-hc-stack">
         <i class="zmdi zmdi-square-o zmdi-hc-stack-2x"></i>
         <i class="zmdi zmdi-store zmdi-hc-stack-1x"></i>
@@ -20,7 +20,7 @@
       <p>My Profile</p>
     </md-list-item>
     <md-divider></md-divider>
-    <md-list-item ng-click="menu.navigate('main.view.activities')" ng-class="{ 'active': $root.state === 'main.view.activities' }">
+    <md-list-item ng-click="menu.navigate('main.view.activities')" ng-class="{ 'active': menu.isCurrentState('main.view.activities') }">
       <span class="zmdi-hc-stack">
         <i class="zmdi zmdi-square-o zmdi-hc-stack-2x"></i>
         <i class="zmdi zmdi-share zmdi-hc-stack-1x"></i>
@@ -28,7 +28,7 @@
       <p>My Activities</p>
     </md-list-item>
     <md-divider></md-divider>
-    <md-list-item ng-click="menu.navigate('main.view.products')" ng-class="{ 'active': $root.state === 'main.view.products' }">
+    <md-list-item ng-click="menu.navigate('main.view.products')" ng-class="{ 'active': menu.isCurrentState('main.view.products') }">
       <span class="zmdi-hc-stack">
         <i class="zmdi zmdi-square-o zmdi-hc-stack-2x"></i>
         <i class="zmdi zmdi-local-cafe zmdi-hc-stack-1x"></i>
@@ -36,7 +36,7 @@
       <p>My Products</p>
     </md-list-item>
     <md-divider></md-divider>
-    <md-list-item ng-click="menu.navigate('main.view.surveys')" ng-class="{ 'active': $root.state === 'main.view.surveys' }">
+    <md-list-item ng-click="menu.navigate('main.view.surveys')" ng-class="{ 'active': menu.isCurrentState('main.view.surveys') }">
       <span class="zmdi-hc-stack">
         <i class="zmdi zmdi-square-o zmdi-hc-stack-2x"></i>
         <i class="zmdi zmdi-comments zmdi-hc-stack-1x"></i>
