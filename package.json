@@ -4,8 +4,7 @@
   "main": "server/server.js",
   "scripts": {
     "postinstall": "bower install && gulp",
-    "start": "node .",
-    "deploy": "NODE_ENV=production node .",
+    "start": "NODE_ENV=production node .",
     "pretest": "eslint .",
     "posttest": "nsp check"
   },
@@ -24,7 +23,8 @@
     "mailgun-js": "^0.7.12",
     "moment": "^2.14.1",
     "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^1.0.1"
+    "strong-error-handler": "^1.0.1",
+    "twilio": "^2.11.0"
   },
   "devDependencies": {
     "bower": "^1.7.9",

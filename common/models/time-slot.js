@@ -1,8 +1,7 @@
-var moment = require('moment')
-var Mailgun = require('mailgun-js');
-
-var mailgunAPIKey = 'key-7262acd35127e222f70149804722aeca';
-var mailgunDomain = 'sandbox8acf16db81ee444db3f6ec8f75c637ee.mailgun.org';
+var _ = require('lodash');
+var moment = require('moment');
+var mailgunClient = require('../../server/services/mailgunClient');
+var twilioClient = require('../../server/services/twilioClient');
 
 module.exports = function(TimeSlot) {
   TimeSlot.cancelReservation = function(id, reason, cb) {
@@ -23,30 +22,8 @@ module.exports = function(TimeSlot) {
             if (err) return cb(err);
             cb(null, true);
           });
-          var mailgun = new Mailgun({
-            apiKey: mailgunAPIKey,
-            domain: mailgunDomain
-          });
-          var mailData = {
-            to: shopkeeper.email,
-            from: 'chip@email.com',
-            subject:
-              'Your activity at ' +
-              timeSlot.hour + ':00 on ' +
-              moment(timeSlot.date).format('DD/MM/YYYY') +
-              ' has been cancelled',
-            html:
-              '<p>Dear ' + shopkeeper.name + ':</p>' +
-              '<p>I am sorry to inform you that your activity at <b>' +
-              timeSlot.hour + ':00 on ' +
-              moment(timeSlot.date).format('DD/MM/YYYY') +
-              '</b> has been cancelled due to following reason:</p>' +
-              '<p><em>' + reason + '</em></p>' +
-              '<p>I apologise for any inconvenience that may have caused, ' +
-              'and appreciate your understanding.</p>' +
-              '<p>Kind Regards,</p><p><i>Chip</i></p>'
-          };
-          mailgun.messages().send(mailData);
+          sendEmail(shopkeeper, timeSlot, reason);
+          sendSMS(shopkeeper, timeSlot);
         });
       } else {
         timeSlot.destroy(function(err) {
@@ -56,6 +33,39 @@ module.exports = function(TimeSlot) {
       }
     });
   };
+
+  function sendEmail(shopkeeper, timeSlot, reason) {
+    var date = moment(timeSlot.date).format('DD/MM/YYYY');
+    var hour = timeSlot.hour;
+    var subject = 'Your activity at ' + hour + ':00 on ' + date + ' has been cancelled';
+    var mailTemplate = _.template(
+      '<p>Dear <%- name %>:</p>' +
+      '<p>I am sorry to inform you that your activity at ' +
+      '<b><%- hour %>:00 on <%- date %></b> ' +
+      'has been cancelled due to following reason: </p>' +
+      '<p><em><%- reason %></em></p>' +
+      '<p>I apologise for any inconvenience that may have caused and appreciate your understanding.</p>' +
+      '<p>Kind Regards,</p>' +
+      '<p><i>Chip</i></p>'
+    );
+    var content = mailTemplate({
+      name: shopkeeper.name,
+      date: date,
+      hour: hour,
+      reason: reason
+    });
+    mailgunClient.sendMail(shopkeeper.email, subject, content);
+  }
+
+  function sendSMS(shopkeeper, timeSlot) {
+    if (shopkeeper.mobileNumber) {
+      var date = moment(timeSlot.date).format('DD/MM/YYYY');
+      var hour = timeSlot.hour;
+      var message = 'Sorry to inform your that your activity at ' + hour + ':00 on ' + date + ' has been cancelled. Please refer to the Email for more details.';
+      var to = '+61' + shopkeeper.mobileNumber.slice(1);
+      twilioClient.sendSMS(to, message);
+    }
+  }
 
   TimeSlot.remoteMethod(
     'cancelReservation',
