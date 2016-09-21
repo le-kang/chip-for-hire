@@ -28,20 +28,24 @@
 
     return directive;
 
-    function controller() {
+    /** @ngInject */
+    function controller($scope) {
       var vm = this;
       vm.role = $rootScope.currentUser.role;
       vm.today = moment().startOf('day');
       vm.currentDate = vm.today;
       vm.startDate = vm.currentDate.clone().startOf('week');
       vm.hours = ['09', '10', '11', '12', '13', '14', '15', '16'];
+      vm.week = [];
+      vm.availableDates = [];
+      vm.activityDates = [];
       vm.isAdmin = isAdmin;
       vm.isCurrentWeek = isCurrentWeek;
       vm.isToday = isToday;
       vm.isBeforeToday = isBeforeToday;
       vm.isCurrentDay = isCurrentDay;
-      vm.isWeekend = isWeekend;
       vm.selectDay = selectDay;
+      vm.isWeekend = isWeekend;
       vm.getTimeSlots = getTimeSlots;
       vm.getActivities = getActivities;
       vm.nextWeek = nextWeek;
@@ -54,6 +58,21 @@
       vm.viewActivity = viewActivity;
       vm.cancelActivity = cancelActivity;
       vm.cancelReservation = cancelReservation;
+
+      $scope.$watch(function() {
+        return vm.timeSlots;
+      }, function() {
+        vm.availableDates = _.map(_.uniq(_.map(vm.timeSlots, 'date')), function(date) {
+          return moment(date);
+        });
+      });
+      $scope.$watch(function() {
+        return vm.activities;
+      }, function() {
+        vm.activityDates = _.map(_.uniq(_.map(vm.activities, 'timeSlot.date')), function(date) {
+          return moment(date);
+        });
+      });
 
       getWeek();
       initSocket();
@@ -216,8 +235,7 @@
 
       function getTimeSlot(hour) {
         return _.find(vm.timeSlots, function(timeSlot) {
-          return moment(timeSlot.date).isSame(vm.currentDate)
-            && timeSlot.hour == hour;
+          return moment(timeSlot.date).isSame(vm.currentDate) && timeSlot.hour == hour;
         });
       }
 
@@ -229,8 +247,7 @@
 
       function getActivity(hour) {
         return _.find(vm.activities, function(activity) {
-          return moment(activity.timeSlot.date).isSame(vm.currentDate)
-            && activity.timeSlot.hour == hour;
+          return moment(activity.timeSlot.date).isSame(vm.currentDate) && activity.timeSlot.hour == hour;
         })
       }
 
