@@ -6,9 +6,9 @@
     .controller('ProfileController', ProfileController);
 
   /** @ngInject */
-  function ProfileController($rootScope, $scope, Shopkeeper, Upload, $mdToast) {
+  function ProfileController($rootScope, $scope, Shopkeeper, Upload, $mdToast, _) {
     var vm = this;
-    vm.currentUser = $rootScope.currentUser;
+    vm.currentUser = _.clone($rootScope.currentUser);
     vm.newLogo = null;
     vm.save = save;
 
@@ -31,9 +31,8 @@
           }
         )
         .$promise
-        .then(function(shopkeeper) {
-          vm.currentUser = shopkeeper;
-          sessionStorage.setItem('currentUser', JSON.stringify($rootScope.currentUser));
+        .then(function() {
+          updateCache();
           $mdToast.show(
             $mdToast
               .simple()
@@ -52,8 +51,17 @@
         }
       }).then(function(res) {
         vm.currentUser.logo = res.data.logo;
-        sessionStorage.setItem('currentUser', JSON.stringify($rootScope.currentUser));
+        updateCache();
       })
+    }
+
+    function updateCache() {
+      $rootScope.currentUser = _.clone(vm.currentUser);
+      if (localStorage.getItem('currentUser')) {
+        localStorage.setItem('currentUser', JSON.stringify($rootScope.currentUser));
+      } else {
+        sessionStorage.setItem('currentUser', JSON.stringify($rootScope.currentUser));
+      }
     }
   }
 
