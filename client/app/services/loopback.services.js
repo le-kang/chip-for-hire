@@ -3619,6 +3619,45 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "POST",
             },
 
+            /**
+             * @ngdoc method
+             * @name lbServices.Shopkeeper#cancelActivity
+             * @methodOf lbServices.Shopkeeper
+             *
+             * @description
+             *
+             * Cancel an activity reservation by the owner
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `id` – `{string=}` -
+             *
+             *  - `activityId` – `{string=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `success` – `{boolean=}` -
+             */
+            "cancelActivity": {
+              url: urlBase + "/Shopkeepers/cancelActivity",
+              method: "POST",
+            },
+
             // INTERNAL. Use Activity.shopkeeper() instead.
             "::get::Activity::shopkeeper": {
               url: urlBase + "/Activities/:id/shopkeeper",

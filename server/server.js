@@ -1,6 +1,7 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 var path = require('path');
+var _ = require('lodash');
 
 var app = module.exports = loopback();
 
@@ -30,6 +31,32 @@ boot(app, __dirname, function(err) {
   if (err) throw err;
 
   // start the server if `$ node server.js`
-  if (require.main === module)
-    app.start();
+  if (require.main === module) {
+    app.io = require('socket.io')(app.start());
+    require('socketio-auth')(app.io, {
+      authenticate: function(socket, data, callback) {
+        //get credentials sent by the client
+        app.models.AccessToken.find({
+          where:{
+            and: [{ userId: data.userId }, { id: data.id }]
+          }
+        }, function(err, tokenDetail){
+          if (err) throw err;
+          if (tokenDetail.length) {
+            // every user has a private room
+            socket.join(data.userId);
+            // join another private room according to the role of user
+            if (data.role == 'Admin') {
+              socket.join('admin');
+            } else {
+              socket.join('shopkeeper');
+            }
+            callback(null, true);
+          } else {
+            callback(null, false);
+          }
+        });
+      }
+    });
+  }
 });

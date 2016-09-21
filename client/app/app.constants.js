@@ -7,5 +7,6 @@
     .constant('_', window._)
     .constant('moment', moment)
     .constant('malarkey', malarkey)
+    .constant('io', io);
 
 })();

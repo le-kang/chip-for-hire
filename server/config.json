@@ -20,9 +20,9 @@
     "handleErrors": false
   },
   "legacyExplorer": false,
-  "email": "no-reply@chip-for-hire.com",
+  "email": "chip-for-hire@lekang.me",
   "mailgunAPIKey": "key-7262acd35127e222f70149804722aeca",
-  "mailgunDomain": "sandbox8acf16db81ee444db3f6ec8f75c637ee.mailgun.org",
+  "mailgunDomain": "lekang.me",
   "twilioAccountSID": "AC673c2d20d9c8bac1814898fe8baa4152",
   "twilioAuthToken": "a46c682d000047e896765c44db7b2eab",
   "twilioNumber": "+61476856826"

@@ -23,9 +23,6 @@
       })
       .$promise
       .then(function(timeSlots) {
-        _.forEach(timeSlots, function(timeSlot) {
-          timeSlot.date = moment(timeSlot.date);
-        });
         vm.timeSlots = timeSlots;
       });
 
@@ -35,7 +32,7 @@
           where: {
             started: false
           },
-          include: ['timeSlot']
+          include: ['timeSlot', 'shopkeeper']
         }
       })
       .$promise

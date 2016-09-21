@@ -25,6 +25,35 @@ module.exports = function(Shopkeeper) {
     });
   };
 
+  Shopkeeper.cancelActivity = function(id, activityId, cb) {
+    Shopkeeper.findById(id, {
+      include: {
+        relation: 'activities',
+        scope: {
+          where: { id: activityId },
+          include: 'timeSlot'
+        }
+      }
+    }, function(err, shopkeeper) {
+      var activity = shopkeeper.toJSON().activities[0];
+      if (activity) {
+        var timeSlot = activity.timeSlot;
+        Shopkeeper.app.models.Activity.destroyById(activity.id, function(err) {
+          if (err) return cb(err);
+          cb(null, true);
+          var socket = Shopkeeper.app.io;
+          socket.to('shopkeeper').emit('free:time slot', {
+            timeSlot: timeSlot,
+            shopkeeperId: shopkeeper.id
+          });
+          socket.to('admin').emit('cancel:activity', activity);
+        })
+      } else {
+        cb(null, false);
+      }
+    });
+  };
+
   Shopkeeper.remoteMethod(
     'uploadLogo',
     {
@@ -34,6 +63,19 @@ module.exports = function(Shopkeeper) {
         { arg: 'id', type: 'string' }
       ],
       returns: { arg: 'logo', type: 'string' },
+      http: { verb: 'post' }
+    }
+  );
+
+  Shopkeeper.remoteMethod(
+    'cancelActivity',
+    {
+      description: 'Cancel an activity reservation by the owner',
+      accepts: [
+        { arg: 'id', type: 'string' },
+        { arg: 'activityId', type: 'string' }
+      ],
+      returns: { arg: 'success', type: 'boolean' },
       http: { verb: 'post' }
     }
   );

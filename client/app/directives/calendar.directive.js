@@ -6,7 +6,7 @@
     .directive('calendar', calendar);
 
   /** @ngInject */
-  function calendar($rootScope, TimeSlot, Shopkeeper, moment, _, $mdDialog, $state) {
+  function calendar($rootScope, TimeSlot, Shopkeeper, moment, _, socket, $mdDialog, $mdToast, $state) {
     var directive = {
       restrict: 'E',
       scope: {},
@@ -18,7 +18,12 @@
       },
       controller: controller,
       controllerAs: 'cal',
-      templateUrl: 'app/views/calendar.html'
+      templateUrl: 'app/views/calendar.html',
+      link: function(scope) {
+        scope.$on('$destroy', function() {
+          socket.disconnect();
+        });
+      }
     };
 
     return directive;
@@ -51,10 +56,7 @@
       vm.cancelReservation = cancelReservation;
 
       getWeek();
-
-      function isAdmin() {
-        return vm.role == 'Admin';
-      }
+      initSocket();
 
       function getWeek() {
         vm.week = [];
@@ -62,6 +64,118 @@
           vm.week.push(vm.startDate.clone().add(i, 'days'));
         }
         return vm.week;
+      }
+
+      function initSocket() {
+        socket.connect();
+        if (isAdmin()) {
+          // inform admin of new activity
+          socket.on('add:activity', function(activity) {
+            vm.activities.push(activity);
+            var time = moment(activity.timeSlot.date).format('DD/MM/YYYY') + " " + activity.timeSlot.hour + ":00";
+            $mdToast.show(
+              $mdToast
+                .simple()
+                .textContent("Time slot (" + time + ") has been reserved by " + activity.shopkeeper.name)
+                .hideDelay(3000)
+            );
+          });
+          // inform admin of activity cancellation
+          socket.on('cancel:activity', function(activity) {
+            _.remove(vm.activities, function(a) {
+              if (a.id == activity.id) {
+                var time = a.timeSlot.hour + ":00 on " + moment(a.timeSlot.date).format('DD/MM/YYYY');
+                $mdToast.show(
+                  $mdToast
+                    .simple()
+                    .textContent("The activity at " + time + " has been cancelled by " + a.shopkeeper.name)
+                    .hideDelay(3000)
+                );
+                return true;
+              }
+              return false;
+            });
+          });
+        } else {
+          // inform shopkeeper of new available time slot
+          socket.on('add:time slot', function(timeSlot) {
+            vm.timeSlots.push(timeSlot);
+            var time = moment(timeSlot.date).format('DD/MM/YYYY') + " " + timeSlot.hour + ":00";
+            $mdToast.show(
+              $mdToast
+                .simple()
+                .textContent("New time slot is available: " + time)
+                .hideDelay(3000)
+            );
+          });
+          // inform shopkeeper of new available time slot that was released from a cancellation of activity
+          socket.on('free:time slot', function(data) {
+            if (data.shopkeeperId != $rootScope.currentUser.id) {
+              vm.timeSlots.push(data.timeSlot);
+              var time = moment(data.timeSlot.date).format('DD/MM/YYYY') + " " + data.timeSlot.hour + ":00";
+              $mdToast.show(
+                $mdToast
+                  .simple()
+                  .textContent("New time slot is available: " + time)
+                  .hideDelay(3000)
+              );
+            }
+          });
+          // inform shopkeeper of removed time slot
+          socket.on('remove:time slot', function(timeSlot) {
+            _.remove(vm.timeSlots, function(t) {
+              if (t.id == timeSlot.id) {
+                var time = moment(t.date).format('DD/MM/YYYY') + " " + t.hour + ":00";
+                $mdToast.show(
+                  $mdToast
+                    .simple()
+                    .textContent("Time slot (" + time + ") is no longer available")
+                    .hideDelay(3000)
+                );
+                return true;
+              }
+              return false;
+            });
+          });
+          // inform shopkeeper of reserved time slot by other shopkeeper
+          socket.on('reserve:time slot', function(data) {
+            if (data.shopkeeperId != $rootScope.currentUser.id) {
+              _.remove(vm.timeSlots, function(timeSlot) {
+                if (timeSlot.id == data.timeSlotId) {
+                  var time = moment(timeSlot.date).format('DD/MM/YYYY') + " " + timeSlot.hour + ":00";
+                  $mdToast.show(
+                    $mdToast
+                      .simple()
+                      .textContent("Time slot (" + time + ") has been reserved")
+                      .hideDelay(3000)
+                  );
+                  return true;
+                }
+                return false;
+              });
+            }
+          });
+          // inform shopkeeper of a cancellation of activity by admin
+          socket.on('cancel:reservation', function(timeSlot) {
+            _.remove(vm.activities, function(activity) {
+              if (activity.id == timeSlot.activity.id) {
+                var time = timeSlot.hour + ":00 on " + moment(timeSlot.date).format('DD/MM/YYYY');
+                $mdToast.show(
+                  $mdToast
+                    .simple()
+                    .textContent("Your activity at (" + time + ") has been cancelled. An Email with more details has been sent to you.")
+                    .hideDelay(3000)
+                );
+                return true;
+              }
+              return false;
+            });
+          });
+        }
+      }
+
+      function isAdmin() {
+        return vm.role == 'Admin';
       }
 
       function isCurrentWeek() {
@@ -206,10 +320,9 @@
           .cancel('No');
         $mdDialog.show(confirm).then(function() {
           Shopkeeper
-            .activities
-            .destroyById({
+            .cancelActivity({
               id: $rootScope.currentUser.id,
-              fk: activity.id
+              activityId: activity.id
             })
             .$promise
             .then(function() {
