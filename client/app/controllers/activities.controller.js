@@ -6,7 +6,7 @@
     .controller('ActivitiesController', ActivitiesController);
 
   /** @ngInject */
-  function ActivitiesController($rootScope, Shopkeeper, _, moment, $mdMedia) {
+  function ActivitiesController($rootScope, $scope, Shopkeeper, _, moment, $mdMedia) {
     var vm = this;
     vm.list = [];
     vm.ongoings = [];
@@ -24,7 +24,7 @@
             {
               relation: 'activities',
               scope: {
-                include: ['timeSlot']
+                include: ['timeSlot', 'product']
               }
             },
             { relation: 'products' },
@@ -38,22 +38,27 @@
           activity.timeSlot.date = moment(activity.timeSlot.date);
         });
         vm.list = _.sortBy(shopkeeper.activities, ['timeSlot.date', 'timeSlot.hour']);
-        vm.ongoings = _.filter(vm.list, function(activity) {
-          return activity.started && !activity.ended;
-        });
-        vm.upcomings = _.filter(vm.list, function(activity) {
-          return !activity.started
-            && activity.timeSlot.date.set('hour', parseInt(activity.timeSlot.hour)).isAfter(moment())
-        });
-        vm.archives = _.filter(vm.list,  function(activity) {
-          return activity.ended;
-        });
         vm.products = shopkeeper.products;
         vm.surveys = shopkeeper.surveys;
+        groupActivities();
         vm.fetching = false;
       }, function() {
         vm.fetching = false;
       });
+
+    $scope.$on('regroup-activities', groupActivities);
+
+    function groupActivities() {
+      vm.ongoings = _.filter(vm.list, function(activity) {
+        return activity.started && !activity.ended;
+      });
+      vm.upcomings = _.filter(vm.list, function(activity) {
+        return !activity.started;
+      });
+      vm.archives = _.filter(vm.list,  function(activity) {
+        return activity.ended;
+      });
+    }
   }
 
 })();

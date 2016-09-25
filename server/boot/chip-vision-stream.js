@@ -23,7 +23,7 @@ module.exports = function(app) {
 
   app.get('/stream-token', function(req, res) {
     var activityId = req.query.activityId;
-    if (streaming && activityId == app.models.Activity.current.id) {
+    if (activityId == app.models.Activity.current.id) {
       if (!streamToken) {
         streamToken = uuid.v4();
       }

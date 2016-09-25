@@ -16,6 +16,11 @@
       "type": "boolean",
       "required": true,
       "default": false
+    },
+    "surveyResults": {
+      "type": [
+        "any"
+      ]
     }
   },
   "validations": [],
@@ -66,6 +71,13 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "start"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "addSurveyResult"
     },
     {
       "accessType": "EXECUTE",

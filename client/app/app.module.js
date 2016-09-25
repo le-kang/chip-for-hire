@@ -10,6 +10,7 @@
       'ui.router',
       'lbServices',
       'ngFileUpload',
-      'ui.tree'
+      'ui.tree',
+      'chart.js'
     ])
 })();

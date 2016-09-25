@@ -6394,7 +6394,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * @description
              *
-             * Kick off an activity by using activation code
+             * Kick off an activity by activation code
              *
              * @param {Object=} parameters Request parameters.
              *
@@ -6423,6 +6423,47 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
             "start": {
               url: urlBase + "/Activities/start",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Activity#addSurveyResult
+             * @methodOf lbServices.Activity
+             *
+             * @description
+             *
+             * Add survey results for current activity
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `id` – `{string=}` -
+             *
+             *  - `result` – `{*=}` -
+             *
+             *  - `key` – `{string=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `success` – `{boolean=}` -
+             */
+            "addSurveyResult": {
+              url: urlBase + "/Activities/addSurveyResult",
               method: "POST",
             },
 

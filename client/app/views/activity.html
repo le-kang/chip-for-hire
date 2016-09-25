@@ -3,7 +3,7 @@
     <div class="header" layout="row" layout-align="start center">
       <h3 flex class="md-subhead" ng-if="!activity.selected.started">Setup Activity</h3>
       <h3 flex class="md-subhead" ng-if="activity.selected.started && !activity.selected.ended">Activity Live Stream</h3>
-      <h3 flex class="md-subhead" ng-if="activity.selected.ended">View Activity</h3>
+      <h3 flex class="md-subhead" ng-if="activity.selected.ended">Review Activity</h3>
       <md-button aria-label="Close" class="md-icon-button" ng-click="activity.unselect()">
         <md-tooltip>Close</md-tooltip>
         <md-icon md-font-icon="zmdi zmdi-close"></md-icon>
@@ -36,6 +36,25 @@
           <i class="fa fa-spinner fa-pulse fa-fw"></i> Preparing video stream, please wait...
         </p>
         <img ng-if="activity.streamToken" ng-src="/chip-vision-stream?token={{ activity.streamToken }}">
+      </div>
+    </div>
+    <div ng-if="activity.selected.ended">
+      <div class="activity-result" layout="row" layout-wrap>
+        <div flex="50">
+          <p class="label">Product</p>
+          <p class="margin-5"><strong><a ng-href="#/products/{{ activity.selected.product.id }}">{{ activity.selected.product.name }}</a></strong></p>
+        </div>
+        <div flex="50">
+          <p class="label">Total Participants</p>
+          <p class="margin-5"><strong>{{ activity.selected.surveyResults.length }}</strong></p>
+        </div>
+        <div flex="100">
+          <p class="label">Survey Result</p>
+          <div ng-repeat="result in activity.results" class="padding-10 text-center">
+            <canvas class="chart chart-pie" chart-labels="result.answers" chart-data="result.answersCount"></canvas>
+            <small>{{ result.question }}</small>
+          </div>
+        </div>
       </div>
     </div>
   </md-card>
