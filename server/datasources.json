@@ -4,9 +4,9 @@
     "port": 27017,
     "url": "mongodb://localhost:27017/chip",
     "database": "chip",
+    "password": "",
     "name": "mongoDB",
     "user": "",
-    "password": "",
     "connector": "mongodb"
   },
   "fileStorage": {

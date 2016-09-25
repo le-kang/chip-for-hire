@@ -6,7 +6,7 @@
     .controller('ActivityController', ActivityController);
 
   /** ngInject */
-  function ActivityController($rootScope, $scope, Shopkeeper, $state, $stateParams, _, $timeout, $mdToast) {
+  function ActivityController($rootScope, $scope, Shopkeeper, $http, $state, $stateParams, _, $timeout, $mdToast) {
     var vm = this;
     vm.selected = null;
     vm.save = save;
@@ -29,8 +29,15 @@
           )
         } else {
           $scope.$parent.activities.selected = vm.selected;
-          vm.products = $scope.$parent.activities.products;
-          vm.surveys = $scope.$parent.activities.surveys;
+          if (!vm.selected.started) {
+            vm.products = $scope.$parent.activities.products;
+            vm.surveys = $scope.$parent.activities.surveys;
+          } else if (!vm.selected.ended) {
+            vm.streamToken = null;
+            prepareStream();
+          } else {
+
+          }
         }
       }
     }
@@ -64,6 +71,14 @@
       vm.selected = null;
       $scope.$parent.activities.selected = null;
       $state.go('main.view.activities');
+    }
+
+    function prepareStream() {
+      $http
+        .get('/stream-token?activityId=' + vm.selected.id)
+        .then(function(response) {
+          vm.streamToken = response.data.streamToken
+        });
     }
   }
 

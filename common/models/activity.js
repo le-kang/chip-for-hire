@@ -5,6 +5,8 @@ var mailgunClient = require('../../server/services/mailgunClient');
 var twilioClient = require('../../server/services/twilioClient');
 
 module.exports = function(Activity) {
+  Activity.current = null;
+
   Activity.observe('after save', function(ctx, next) {
     if (ctx.isNewInstance) {
       var socket = Activity.app.io;
@@ -36,7 +38,7 @@ module.exports = function(Activity) {
 
         var date = moment(result.timeSlot.date).format('DD/MM/YYYY');
         var hour = result.timeSlot.hour;
-        var code = activity.id.toString().slice(-6);
+        var code = timeSlotId.toString().slice(-6);
         // send email with activation code
         var subject = 'Activation code for activity at ' + hour + ':00 on ' + date;
         var content = _.template(
@@ -62,4 +64,108 @@ module.exports = function(Activity) {
     }
     next();
   });
+
+  Activity.start = function(code, key, cb) {
+    if (key != Activity.app.get("endPointToken")) {
+      var err = new Error('denied!');
+      err.statusCode = 401;
+      return cb(err);
+    }
+    Activity.app.models.TimeSlot.find({
+      where: {
+        date: moment().startOf('day').valueOf()
+      },
+      include: {
+        relation: 'activity',
+        scope: {
+          include: [
+            {
+              relation: 'shopkeeper',
+              scope: {
+                fields: ['name', 'logo', 'description']
+              }
+            },
+            {
+              relation: 'product',
+              scope: {
+                fields: ['name', 'images', 'description']
+              }
+            },
+            {
+              relation: 'survey',
+              scope: {
+                fields: ['surveyItems'],
+                include: {
+                  relation: 'surveyItems',
+                  scope: {
+                    order: 'order ASC'
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }, function(err, timeSlots) {
+      if (err) return cb(err);
+      var timeSlot = _.find(timeSlots, function(t) {
+        return t.id.toString().slice(-6) == code.toLowerCase();
+      });
+      if (timeSlot && timeSlot.activity) {
+        var activity = timeSlot.toJSON().activity;
+        Activity.current = activity;
+        Activity.findById(activity.id, function(err, instance) {
+          instance.updateAttribute('started', true, function(err) {
+            if (err) return cb(err);
+            cb(null, activity);
+          })
+        });
+      } else {
+        var err = new Error('Invalid code!');
+        err.statusCode = 400;
+        cb(err);
+      }
+    });
+  };
+
+  Activity.end = function(id, key, cb) {
+    if (key != Activity.app.get("endPointToken")) {
+      var err = new Error('denied!');
+      err.statusCode = 401;
+      return cb(err);
+    }
+    Activity.current = null;
+    Activity.findById(id, function(err, activity) {
+      activity.updateAttribute('ended', true, function(err) {
+        if (err) return cb(err);
+        cb(null, true)
+      })
+    });
+  };
+
+  Activity.remoteMethod(
+    'start',
+    {
+      description: 'Kick off an activity by using activation code',
+      accepts: [
+        { arg: 'code', type: 'string' },
+        { arg: 'key', type: 'string' }
+      ],
+      returns: { arg: 'activity', type: 'object' },
+      http: { verb: 'post' }
+    }
+  );
+
+  Activity.remoteMethod(
+    'end',
+    {
+      description: 'End an current activity',
+      accepts: [
+        { arg: 'id', type: 'string' },
+        { arg: 'key', type: 'string' }
+      ],
+      returns: { arg: 'success', type: 'boolean' },
+      http: { verb: 'post' }
+    }
+  );
 };

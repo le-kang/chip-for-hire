@@ -30,5 +30,13 @@
         </div>
       </div>
     </form>
+    <div ng-if="activity.selected.started && !activity.selected.ended">
+      <div class="video-container" layout="column" layout-align="center center">
+        <p ng-if="!activity.streamToken">
+          <i class="fa fa-spinner fa-pulse fa-fw"></i> Preparing video stream, please wait...
+        </p>
+        <img ng-if="activity.streamToken" ng-src="/chip-vision-stream?token={{ activity.streamToken }}">
+      </div>
+    </div>
   </md-card>
 </md-content>

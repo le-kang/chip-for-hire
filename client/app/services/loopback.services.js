@@ -5891,46 +5891,10 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "GET",
             },
 
-            // INTERNAL. Use Activity.product.create() instead.
-            "prototype$__create__product": {
-              url: urlBase + "/Activities/:id/product",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Activity.product.update() instead.
-            "prototype$__update__product": {
-              url: urlBase + "/Activities/:id/product",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Activity.product.destroy() instead.
-            "prototype$__destroy__product": {
-              url: urlBase + "/Activities/:id/product",
-              method: "DELETE",
-            },
-
             // INTERNAL. Use Activity.survey() instead.
             "prototype$__get__survey": {
               url: urlBase + "/Activities/:id/survey",
               method: "GET",
-            },
-
-            // INTERNAL. Use Activity.survey.create() instead.
-            "prototype$__create__survey": {
-              url: urlBase + "/Activities/:id/survey",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Activity.survey.update() instead.
-            "prototype$__update__survey": {
-              url: urlBase + "/Activities/:id/survey",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Activity.survey.destroy() instead.
-            "prototype$__destroy__survey": {
-              url: urlBase + "/Activities/:id/survey",
-              method: "DELETE",
             },
 
             /**
@@ -6423,6 +6387,84 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "POST",
             },
 
+            /**
+             * @ngdoc method
+             * @name lbServices.Activity#start
+             * @methodOf lbServices.Activity
+             *
+             * @description
+             *
+             * Kick off an activity by using activation code
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `code` – `{string=}` -
+             *
+             *  - `key` – `{string=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `activity` – `{object=}` -
+             */
+            "start": {
+              url: urlBase + "/Activities/start",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Activity#end
+             * @methodOf lbServices.Activity
+             *
+             * @description
+             *
+             * End an current activity
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `id` – `{string=}` -
+             *
+             *  - `key` – `{string=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `success` – `{boolean=}` -
+             */
+            "end": {
+              url: urlBase + "/Activities/end",
+              method: "POST",
+            },
+
             // INTERNAL. Use Shopkeeper.activities.findById() instead.
             "::findById::Shopkeeper::activities": {
               params: {
@@ -6511,6 +6553,124 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
             "::destroy::TimeSlot::activity": {
               url: urlBase + "/TimeSlots/:id/activity",
               method: "DELETE",
+            },
+
+            // INTERNAL. Use Product.activities.findById() instead.
+            "::findById::Product::activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Products/:id/activities/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Product.activities.destroyById() instead.
+            "::destroyById::Product::activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Products/:id/activities/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Product.activities.updateById() instead.
+            "::updateById::Product::activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Products/:id/activities/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Product.activities() instead.
+            "::get::Product::activities": {
+              isArray: true,
+              url: urlBase + "/Products/:id/activities",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Product.activities.create() instead.
+            "::create::Product::activities": {
+              url: urlBase + "/Products/:id/activities",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Product.activities.createMany() instead.
+            "::createMany::Product::activities": {
+              isArray: true,
+              url: urlBase + "/Products/:id/activities",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Product.activities.destroyAll() instead.
+            "::delete::Product::activities": {
+              url: urlBase + "/Products/:id/activities",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Product.activities.count() instead.
+            "::count::Product::activities": {
+              url: urlBase + "/Products/:id/activities/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Survey.activities.findById() instead.
+            "::findById::Survey::activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/activities/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Survey.activities.destroyById() instead.
+            "::destroyById::Survey::activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/activities/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Survey.activities.updateById() instead.
+            "::updateById::Survey::activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/activities/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Survey.activities() instead.
+            "::get::Survey::activities": {
+              isArray: true,
+              url: urlBase + "/Surveys/:id/activities",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Survey.activities.create() instead.
+            "::create::Survey::activities": {
+              url: urlBase + "/Surveys/:id/activities",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Survey.activities.createMany() instead.
+            "::createMany::Survey::activities": {
+              isArray: true,
+              url: urlBase + "/Surveys/:id/activities",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Survey.activities.destroyAll() instead.
+            "::delete::Survey::activities": {
+              url: urlBase + "/Surveys/:id/activities",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Survey.activities.count() instead.
+            "::count::Survey::activities": {
+              url: urlBase + "/Surveys/:id/activities/count",
+              method: "GET",
             },
           }
         );
@@ -6783,20 +6943,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
           var action = TargetResource["::get::Activity::shopkeeper"];
           return action.apply(R, arguments);
         };
-    /**
-     * @ngdoc object
-     * @name lbServices.Activity.product
-     * @header lbServices.Activity.product
-     * @object
-     * @description
-     *
-     * The object `Activity.product` groups methods
-     * manipulating `Product` instances related to `Activity`.
-     *
-     * Call {@link lbServices.Activity#product Activity.product()}
-     * to query all related instances.
-     */
-
 
             /**
              * @ngdoc method
@@ -6805,7 +6951,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              *
              * @description
              *
-             * Fetches hasOne relation product.
+             * Fetches belongsTo relation product.
              *
              * @param {Object=} parameters Request parameters.
              *
@@ -6836,171 +6982,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
 
             /**
              * @ngdoc method
-             * @name lbServices.Activity.product#create
-             * @methodOf lbServices.Activity.product
-             *
-             * @description
-             *
-             * Creates a new instance in product of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Product` object.)
-             * </em>
-             */
-        R.product.create = function() {
-          var TargetResource = $injector.get("Product");
-          var action = TargetResource["::create::Activity::product"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Activity.product#createMany
-             * @methodOf lbServices.Activity.product
-             *
-             * @description
-             *
-             * Creates a new instance in product of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Product` object.)
-             * </em>
-             */
-        R.product.createMany = function() {
-          var TargetResource = $injector.get("Product");
-          var action = TargetResource["::createMany::Activity::product"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Activity.product#destroy
-             * @methodOf lbServices.Activity.product
-             *
-             * @description
-             *
-             * Deletes product of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.product.destroy = function() {
-          var TargetResource = $injector.get("Product");
-          var action = TargetResource["::destroy::Activity::product"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Activity.product#update
-             * @methodOf lbServices.Activity.product
-             *
-             * @description
-             *
-             * Update product of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Product` object.)
-             * </em>
-             */
-        R.product.update = function() {
-          var TargetResource = $injector.get("Product");
-          var action = TargetResource["::update::Activity::product"];
-          return action.apply(R, arguments);
-        };
-    /**
-     * @ngdoc object
-     * @name lbServices.Activity.survey
-     * @header lbServices.Activity.survey
-     * @object
-     * @description
-     *
-     * The object `Activity.survey` groups methods
-     * manipulating `Survey` instances related to `Activity`.
-     *
-     * Call {@link lbServices.Activity#survey Activity.survey()}
-     * to query all related instances.
-     */
-
-
-            /**
-             * @ngdoc method
              * @name lbServices.Activity#survey
              * @methodOf lbServices.Activity
              *
              * @description
              *
-             * Fetches hasOne relation survey.
+             * Fetches belongsTo relation survey.
              *
              * @param {Object=} parameters Request parameters.
              *
@@ -7026,151 +7013,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         R.survey = function() {
           var TargetResource = $injector.get("Survey");
           var action = TargetResource["::get::Activity::survey"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Activity.survey#create
-             * @methodOf lbServices.Activity.survey
-             *
-             * @description
-             *
-             * Creates a new instance in survey of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Survey` object.)
-             * </em>
-             */
-        R.survey.create = function() {
-          var TargetResource = $injector.get("Survey");
-          var action = TargetResource["::create::Activity::survey"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Activity.survey#createMany
-             * @methodOf lbServices.Activity.survey
-             *
-             * @description
-             *
-             * Creates a new instance in survey of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Array.<Object>,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Array.<Object>} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Survey` object.)
-             * </em>
-             */
-        R.survey.createMany = function() {
-          var TargetResource = $injector.get("Survey");
-          var action = TargetResource["::createMany::Activity::survey"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Activity.survey#destroy
-             * @methodOf lbServices.Activity.survey
-             *
-             * @description
-             *
-             * Deletes survey of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * This method returns no data.
-             */
-        R.survey.destroy = function() {
-          var TargetResource = $injector.get("Survey");
-          var action = TargetResource["::destroy::Activity::survey"];
-          return action.apply(R, arguments);
-        };
-
-            /**
-             * @ngdoc method
-             * @name lbServices.Activity.survey#update
-             * @methodOf lbServices.Activity.survey
-             *
-             * @description
-             *
-             * Update survey of this model.
-             *
-             * @param {Object=} parameters Request parameters.
-             *
-             *  - `id` – `{*}` - PersistedModel id
-             *
-             * @param {Object} postData Request data.
-             *
-             * This method expects a subset of model properties as request parameters.
-             *
-             * @param {function(Object,Object)=} successCb
-             *   Success callback with two arguments: `value`, `responseHeaders`.
-             *
-             * @param {function(Object)=} errorCb Error callback with one argument:
-             *   `httpResponse`.
-             *
-             * @returns {Object} An empty reference that will be
-             *   populated with the actual data once the response is returned
-             *   from the server.
-             *
-             * <em>
-             * (The remote method definition does not provide any description.
-             * This usually means the response is a `Survey` object.)
-             * </em>
-             */
-        R.survey.update = function() {
-          var TargetResource = $injector.get("Survey");
-          var action = TargetResource["::update::Activity::survey"];
           return action.apply(R, arguments);
         };
 
@@ -7208,6 +7050,58 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
             // INTERNAL. Use Product.shopkeeper() instead.
             "prototype$__get__shopkeeper": {
               url: urlBase + "/Products/:id/shopkeeper",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Product.activities.findById() instead.
+            "prototype$__findById__activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Products/:id/activities/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Product.activities.destroyById() instead.
+            "prototype$__destroyById__activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Products/:id/activities/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Product.activities.updateById() instead.
+            "prototype$__updateById__activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Products/:id/activities/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Product.activities() instead.
+            "prototype$__get__activities": {
+              isArray: true,
+              url: urlBase + "/Products/:id/activities",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Product.activities.create() instead.
+            "prototype$__create__activities": {
+              url: urlBase + "/Products/:id/activities",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Product.activities.destroyAll() instead.
+            "prototype$__delete__activities": {
+              url: urlBase + "/Products/:id/activities",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Product.activities.count() instead.
+            "prototype$__count__activities": {
+              url: urlBase + "/Products/:id/activities/count",
               method: "GET",
             },
 
@@ -7843,31 +7737,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               url: urlBase + "/Activities/:id/product",
               method: "GET",
             },
-
-            // INTERNAL. Use Activity.product.create() instead.
-            "::create::Activity::product": {
-              url: urlBase + "/Activities/:id/product",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Activity.product.createMany() instead.
-            "::createMany::Activity::product": {
-              isArray: true,
-              url: urlBase + "/Activities/:id/product",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Activity.product.update() instead.
-            "::update::Activity::product": {
-              url: urlBase + "/Activities/:id/product",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Activity.product.destroy() instead.
-            "::destroy::Activity::product": {
-              url: urlBase + "/Activities/:id/product",
-              method: "DELETE",
-            },
           }
         );
 
@@ -8103,6 +7972,307 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
           var action = TargetResource["::get::Product::shopkeeper"];
           return action.apply(R, arguments);
         };
+    /**
+     * @ngdoc object
+     * @name lbServices.Product.activities
+     * @header lbServices.Product.activities
+     * @object
+     * @description
+     *
+     * The object `Product.activities` groups methods
+     * manipulating `Activity` instances related to `Product`.
+     *
+     * Call {@link lbServices.Product#activities Product.activities()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Product#activities
+             * @methodOf lbServices.Product
+             *
+             * @description
+             *
+             * Queries activities of Product.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Activity` object.)
+             * </em>
+             */
+        R.activities = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::get::Product::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Product.activities#count
+             * @methodOf lbServices.Product.activities
+             *
+             * @description
+             *
+             * Counts activities of Product.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.activities.count = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::count::Product::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Product.activities#create
+             * @methodOf lbServices.Product.activities
+             *
+             * @description
+             *
+             * Creates a new instance in activities of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Activity` object.)
+             * </em>
+             */
+        R.activities.create = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::create::Product::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Product.activities#createMany
+             * @methodOf lbServices.Product.activities
+             *
+             * @description
+             *
+             * Creates a new instance in activities of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Activity` object.)
+             * </em>
+             */
+        R.activities.createMany = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::createMany::Product::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Product.activities#destroyAll
+             * @methodOf lbServices.Product.activities
+             *
+             * @description
+             *
+             * Deletes all activities of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.activities.destroyAll = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::delete::Product::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Product.activities#destroyById
+             * @methodOf lbServices.Product.activities
+             *
+             * @description
+             *
+             * Delete a related item by id for activities.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for activities
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.activities.destroyById = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::destroyById::Product::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Product.activities#findById
+             * @methodOf lbServices.Product.activities
+             *
+             * @description
+             *
+             * Find a related item by id for activities.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for activities
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Activity` object.)
+             * </em>
+             */
+        R.activities.findById = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::findById::Product::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Product.activities#updateById
+             * @methodOf lbServices.Product.activities
+             *
+             * @description
+             *
+             * Update a related item by id for activities.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for activities
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Activity` object.)
+             * </em>
+             */
+        R.activities.updateById = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::updateById::Product::activities"];
+          return action.apply(R, arguments);
+        };
 
 
         return R;
@@ -8141,6 +8311,33 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "GET",
             },
 
+            // INTERNAL. Use Survey.activities.findById() instead.
+            "prototype$__findById__activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/activities/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Survey.activities.destroyById() instead.
+            "prototype$__destroyById__activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/activities/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Survey.activities.updateById() instead.
+            "prototype$__updateById__activities": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Surveys/:id/activities/:fk",
+              method: "PUT",
+            },
+
             // INTERNAL. Use Survey.surveyItems.findById() instead.
             "prototype$__findById__surveyItems": {
               params: {
@@ -8166,6 +8363,31 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               },
               url: urlBase + "/Surveys/:id/surveyItems/:fk",
               method: "PUT",
+            },
+
+            // INTERNAL. Use Survey.activities() instead.
+            "prototype$__get__activities": {
+              isArray: true,
+              url: urlBase + "/Surveys/:id/activities",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Survey.activities.create() instead.
+            "prototype$__create__activities": {
+              url: urlBase + "/Surveys/:id/activities",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Survey.activities.destroyAll() instead.
+            "prototype$__delete__activities": {
+              url: urlBase + "/Surveys/:id/activities",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Survey.activities.count() instead.
+            "prototype$__count__activities": {
+              url: urlBase + "/Surveys/:id/activities/count",
+              method: "GET",
             },
 
             // INTERNAL. Use Survey.surveyItems() instead.
@@ -8748,31 +8970,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "GET",
             },
 
-            // INTERNAL. Use Activity.survey.create() instead.
-            "::create::Activity::survey": {
-              url: urlBase + "/Activities/:id/survey",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Activity.survey.createMany() instead.
-            "::createMany::Activity::survey": {
-              isArray: true,
-              url: urlBase + "/Activities/:id/survey",
-              method: "POST",
-            },
-
-            // INTERNAL. Use Activity.survey.update() instead.
-            "::update::Activity::survey": {
-              url: urlBase + "/Activities/:id/survey",
-              method: "PUT",
-            },
-
-            // INTERNAL. Use Activity.survey.destroy() instead.
-            "::destroy::Activity::survey": {
-              url: urlBase + "/Activities/:id/survey",
-              method: "DELETE",
-            },
-
             // INTERNAL. Use SurveyItem.survey() instead.
             "::get::SurveyItem::survey": {
               url: urlBase + "/SurveyItems/:id/survey",
@@ -9011,6 +9208,307 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         R.shopkeeper = function() {
           var TargetResource = $injector.get("Shopkeeper");
           var action = TargetResource["::get::Survey::shopkeeper"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Survey.activities
+     * @header lbServices.Survey.activities
+     * @object
+     * @description
+     *
+     * The object `Survey.activities` groups methods
+     * manipulating `Activity` instances related to `Survey`.
+     *
+     * Call {@link lbServices.Survey#activities Survey.activities()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey#activities
+             * @methodOf lbServices.Survey
+             *
+             * @description
+             *
+             * Queries activities of Survey.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Activity` object.)
+             * </em>
+             */
+        R.activities = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::get::Survey::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.activities#count
+             * @methodOf lbServices.Survey.activities
+             *
+             * @description
+             *
+             * Counts activities of Survey.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.activities.count = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::count::Survey::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.activities#create
+             * @methodOf lbServices.Survey.activities
+             *
+             * @description
+             *
+             * Creates a new instance in activities of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Activity` object.)
+             * </em>
+             */
+        R.activities.create = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::create::Survey::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.activities#createMany
+             * @methodOf lbServices.Survey.activities
+             *
+             * @description
+             *
+             * Creates a new instance in activities of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Activity` object.)
+             * </em>
+             */
+        R.activities.createMany = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::createMany::Survey::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.activities#destroyAll
+             * @methodOf lbServices.Survey.activities
+             *
+             * @description
+             *
+             * Deletes all activities of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.activities.destroyAll = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::delete::Survey::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.activities#destroyById
+             * @methodOf lbServices.Survey.activities
+             *
+             * @description
+             *
+             * Delete a related item by id for activities.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for activities
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.activities.destroyById = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::destroyById::Survey::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.activities#findById
+             * @methodOf lbServices.Survey.activities
+             *
+             * @description
+             *
+             * Find a related item by id for activities.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for activities
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Activity` object.)
+             * </em>
+             */
+        R.activities.findById = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::findById::Survey::activities"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Survey.activities#updateById
+             * @methodOf lbServices.Survey.activities
+             *
+             * @description
+             *
+             * Update a related item by id for activities.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for activities
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Activity` object.)
+             * </em>
+             */
+        R.activities.updateById = function() {
+          var TargetResource = $injector.get("Activity");
+          var action = TargetResource["::updateById::Survey::activities"];
           return action.apply(R, arguments);
         };
     /**

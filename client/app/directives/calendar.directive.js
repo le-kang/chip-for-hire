@@ -59,20 +59,28 @@
       vm.cancelActivity = cancelActivity;
       vm.cancelReservation = cancelReservation;
 
-      $scope.$watch(function() {
-        return vm.timeSlots;
-      }, function() {
-        vm.availableDates = _.map(_.uniq(_.map(vm.timeSlots, 'date')), function(date) {
-          return moment(date);
+      if (!isAdmin()) {
+        $scope.$watch(function() {
+          return vm.timeSlots;
+        }, function() {
+          vm.availableDates = _.map(_.uniq(_.map(vm.timeSlots, 'date')), function(date) {
+            return moment(date);
+          });
+          _.remove(vm.availableDates, function(date) {
+            return date.isBefore(vm.today);
+          });
         });
-      });
-      $scope.$watch(function() {
-        return vm.activities;
-      }, function() {
-        vm.activityDates = _.map(_.uniq(_.map(vm.activities, 'timeSlot.date')), function(date) {
-          return moment(date);
+        $scope.$watch(function() {
+          return vm.activities;
+        }, function() {
+          vm.activityDates = _.map(_.uniq(_.map(vm.activities, 'timeSlot.date')), function(date) {
+            return moment(date);
+          });
+          _.remove(vm.activityDates, function(date) {
+            return date.isBefore(vm.today);
+          });
         });
-      });
+      }
 
       getWeek();
       initSocket();

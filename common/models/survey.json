@@ -22,6 +22,11 @@
       "type": "hasMany",
       "model": "SurveyItem",
       "foreignKey": ""
+    },
+    "activities": {
+      "type": "hasMany",
+      "model": "Activity",
+      "foreignKey": ""
     }
   },
   "acls": [

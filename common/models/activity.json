@@ -26,12 +26,12 @@
       "foreignKey": ""
     },
     "product": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "Product",
       "foreignKey": ""
     },
     "survey": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "Survey",
       "foreignKey": ""
     },
@@ -59,6 +59,20 @@
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "start"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "end"
     }
   ],
   "methods": {}

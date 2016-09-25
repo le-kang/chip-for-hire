@@ -25,6 +25,11 @@
       "type": "belongsTo",
       "model": "Shopkeeper",
       "foreignKey": ""
+    },
+    "activities": {
+      "type": "hasMany",
+      "model": "Activity",
+      "foreignKey": ""
     }
   },
   "acls": [

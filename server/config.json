@@ -25,5 +25,6 @@
   "mailgunDomain": "lekang.me",
   "twilioAccountSID": "AC673c2d20d9c8bac1814898fe8baa4152",
   "twilioAuthToken": "a46c682d000047e896765c44db7b2eab",
-  "twilioNumber": "+61476856826"
+  "twilioNumber": "+61476856826",
+  "endPointToken": "magiclab"
 }

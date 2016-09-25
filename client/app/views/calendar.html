@@ -35,7 +35,7 @@
           <md-menu>
             <md-button ng-click="$mdOpenMenu()">Available dates</md-button>
             <md-menu-content width="3">
-              <md-menu-item ng-repeat="date in cal.availableDates" ng-if="!date.isBefore(cal.today)">
+              <md-menu-item ng-repeat="date in cal.availableDates">
                 <md-button ng-click="cal.selectDay(date)">{{ date.format('DD/MM/YYYY') }}</md-button>
               </md-menu-item>
               <md-menu-item ng-if="cal.availableDates.length == 0">
@@ -48,7 +48,7 @@
           <md-menu>
             <md-button ng-click="$mdOpenMenu()">My Activities</md-button>
             <md-menu-content width="3">
-              <md-menu-item ng-repeat="date in cal.activityDates" ng-if="!date.isBefore(cal.today)">
+              <md-menu-item ng-repeat="date in cal.activityDates">
                 <md-button ng-click="cal.selectDay(date)">{{ date.format('DD/MM/YYYY') }}</md-button>
               </md-menu-item>
               <md-menu-item ng-if="cal.activityDates.length == 0">
