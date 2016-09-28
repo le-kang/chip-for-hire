@@ -3,25 +3,27 @@
     <md-dialog-content class="md-dialog-content add-survey-item">
       <h2 class="md-title">Hire Chip at {{ reservation.hour }}:00 on {{ reservation.date }}</h2>
       <div layout="column">
-        <md-input-container class="full-width">
+        <md-input-container class="full-width" ng-if="reservation.products.length > 0">
           <label>Product</label>
           <md-select name="productId" ng-model="reservation.productId" required>
             <md-option ng-repeat="product in reservation.products" value="{{ product.id }}">{{ product.name }}</md-option>
           </md-select>
         </md-input-container>
-        <md-input-container class="full-width">
+        <p ng-if="reservation.products.length == 0">You need to have at least one product before booking, create a product at <a ng-href="#/products" ng-click="reservation.cancel()">here</a></p>
+        <md-input-container class="full-width" ng-if="reservation.surveys.length > 0">
           <label>Survey</label>
           <md-select name="surveyId" ng-model="reservation.surveyId" required>
             <md-option ng-repeat="survey in reservation.surveys" value="{{ survey.id }}">{{ survey.name }}</md-option>
           </md-select>
         </md-input-container>
+        <p ng-if="reservation.surveys.length == 0">You need to have at least one survey before booking, create a survey at <a ng-href="#/products" ng-click="reservation.cancel()">here</a></p>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
       <md-button class="md-primary" ng-click="reservation.cancel()">
         Cancel
       </md-button>
-      <md-button type="submit" class="md-primary" ng-disabled="reservationForm.$invalid">
+      <md-button type="submit" class="md-primary" ng-disabled="reservationForm.$invalid" ng-if="reservation.products.length > 0 && reservation.surveys.length > 0">
         Submit
       </md-button>
     </md-dialog-actions>

@@ -6,7 +6,7 @@
     .controller('RegisterController', RegisterController);
 
   /** ngInject */
-  function RegisterController(auth, $state, $mdToast) {
+  function RegisterController(auth, $state, $mdToast, $mdDialog) {
     var vm = this;
     vm.name = '';
     vm.email = '';
@@ -26,11 +26,15 @@
           auth.login('Shopkeeper', vm.email, vm.password, false)
             .then(function() {
               $state.go('main.view.home');
-            }, function() {
-
             });
         }, function() {
-
+          $mdDialog.show(
+            $mdDialog.alert()
+              .clickOutsideToClose(false)
+              .title('Registration failed')
+              .textContent('Account "' + vm.email + '" is already existed.')
+              .ok('Got it!')
+          );
         });
     }
   }

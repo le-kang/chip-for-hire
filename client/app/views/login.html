@@ -21,7 +21,7 @@
             Remember me
           </md-checkbox>
         </md-input-container>
-        <md-button class="md-primary md-raised full-width" type="submit">Sign in</md-button>
+        <md-button class="md-primary md-raised full-width" type="submit" ng-disabled="signInForm.$invalid">Sign in</md-button>
         <md-button class="md-primary full-width line-height-normal" ng-href="#register">Don't have an account?<br/> Sign up here</md-button>
       </div>
     </form>

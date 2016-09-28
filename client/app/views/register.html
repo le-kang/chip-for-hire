@@ -20,7 +20,7 @@
           <label>Password</label>
           <input type="password" required ng-model="register.password">
         </md-input-container>
-        <md-button class="md-primary md-raised full-width" type="submit">Sign up</md-button>
+        <md-button class="md-primary md-raised full-width" type="submit" ng-disabled="signUpForm.$invalid">Sign up</md-button>
         <md-button class="md-primary full-width line-height-normal" ng-href="#login">Already have an account?<br/> Login here</md-button>
       </div>
     </form>
