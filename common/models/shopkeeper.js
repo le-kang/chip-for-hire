@@ -4,9 +4,14 @@ var path = require('path');
 module.exports = function(Shopkeeper) {
   Shopkeeper.observe('after save', function(ctx, next) {
     if (ctx.isNewInstance) {
-      fs.mkdirSync(path.join(__dirname, '../', '../', 'storage/' + ctx.instance.id));
+      if (process.env.NODE_ENV != 'production') {
+        fs.mkdir(path.join(__dirname, '../', '../', 'storage/' + ctx.instance.id), next);
+      } else {
+        Shopkeeper.app.models.Container.createContainer({ name: ctx.instance.id }, next);
+      }
+    } else {
+      next();
     }
-    next();
   });
 
   Shopkeeper.uploadLogo = function(ctx, id, cb) {

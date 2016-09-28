@@ -8,5 +8,12 @@
     "user": "chip",
     "password": "magiclab",
     "connector": "mongodb"
+  },
+  "fileStorage": {
+    "name": "fileStorage",
+    "connector": "loopback-component-storage",
+    "provider": "azure",
+    "storageAccount": "chipforhire",
+    "storageAccessKey": "6a4SUQn/fieF7MLZptqpbIM1cC4l9qp6dyjFYfGp3sBm8nA77WnKBNYkXrshEqgL43QuIVh49hyGfAQ2ixBgQw=="
   }
 }

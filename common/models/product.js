@@ -5,9 +5,14 @@ var _ = require('lodash');
 module.exports = function(Product) {
   Product.observe('after save', function(ctx, next) {
     if (ctx.isNewInstance) {
-      fs.mkdirSync(path.join(__dirname, '../', '../', 'storage/' + ctx.instance.id));
+      if (process.env.NODE_ENV != 'production') {
+        fs.mkdir(path.join(__dirname, '../', '../', 'storage/' + ctx.instance.id), next);
+      } else {
+        Product.app.models.Container.createContainer({ name: ctx.instance.id }, next);
+      }
+    } else {
+      next();
     }
-    next();
   });
 
   Product.uploadImages = function(ctx, id, cb) {
