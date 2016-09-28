@@ -29,9 +29,7 @@
     "socketio-auth": "0.0.5",
     "strong-error-handler": "^1.0.1",
     "twilio": "^2.11.0",
-    "uuid": "^2.0.3"
-  },
-  "devDependencies": {
+    "uuid": "^2.0.3",
     "bower": "^1.7.9",
     "del": "^2.2.2",
     "eslint": "^2.5.3",
