@@ -17,6 +17,10 @@
       "required": true,
       "default": false
     },
+    "offer": {
+      "type": "string",
+      "required": true
+    },
     "surveyResults": {
       "type": [
         "any"
@@ -78,6 +82,13 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "addSurveyResult"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "sendOffer"
     },
     {
       "accessType": "EXECUTE",

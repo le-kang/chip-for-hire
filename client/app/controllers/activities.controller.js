@@ -22,7 +22,6 @@
         filter: {
           include: [
             {
-
               relation: 'activities',
               scope: {
                 include: ['timeSlot', 'product']
@@ -47,7 +46,7 @@
         vm.fetching = false;
       });
 
-    $scope.$on('regroup-activit', groupActivities);
+    $scope.$on('regroup-activities', groupActivities);
 
     function groupActivities() {
       vm.ongoings = _.filter(vm.list, function(activity) {

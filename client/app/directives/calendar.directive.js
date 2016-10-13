@@ -410,6 +410,7 @@
         var vm = this;
         vm.productId = null;
         vm.surveyId = null;
+        vm.offer = '';
         vm.products = products;
         vm.surveys = surveys;
         vm.date = moment(timeSlot.date).format('DD/MM/YYYY');
@@ -425,6 +426,7 @@
               {
                 productId: vm.productId,
                 surveyId: vm.surveyId,
+                offer: vm.offer,
                 shopkeeperId: shopkeeperId,
                 timeSlotId: timeSlot.id
               }

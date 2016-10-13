@@ -146,6 +146,18 @@ module.exports = function(Activity) {
     });
   };
 
+  Activity.sendOffer = function(id, mobileNumber, key, cb) {
+    if (Activity.current && id != Activity.current.id || key != Activity.app.get("endPointToken")) {
+      var err = new Error('denied!');
+      err.statusCode = 401;
+      return cb(err);
+    }
+    var message = 'Offer from ' + Activity.current.shopkeeper.name + ': ' + Activity.current.offer;
+    var to = '+61' + mobileNumber.slice(1);
+    twilioClient.sendSMS(to, message);
+    cb(null, true);
+  };
+
   Activity.end = function(id, key, cb) {
     if (Activity.current && id != Activity.current.id || key != Activity.app.get("endPointToken")) {
       var err = new Error('denied!');
@@ -186,6 +198,20 @@ module.exports = function(Activity) {
       accepts: [
         { arg: 'id', type: 'string' },
         { arg: 'result', type: 'array' },
+        { arg: 'key', type: 'string' }
+      ],
+      returns: { arg: 'success', type: 'boolean' },
+      http: { verb: 'post' }
+    }
+  );
+
+  Activity.remoteMethod(
+    'sendOffer',
+    {
+      description: 'Send a offer message to customer using provided number',
+      accepts: [
+        { arg: 'id', type: 'string' },
+        { arg: 'mobileNumber', type: 'string' },
         { arg: 'key', type: 'string' }
       ],
       returns: { arg: 'success', type: 'boolean' },

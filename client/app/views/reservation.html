@@ -17,6 +17,10 @@
           </md-select>
         </md-input-container>
         <p ng-if="reservation.surveys.length == 0">You need to have at least one survey before booking, create a survey at <a ng-href="#/products" ng-click="reservation.cancel()">here</a></p>
+        <md-input-container class="full-width">
+          <label>Offer</label>
+          <textarea rows="2" md-select-on-focus md-maxlength="500" ng-model="reservation.offer" required></textarea>
+        </md-input-container>
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">

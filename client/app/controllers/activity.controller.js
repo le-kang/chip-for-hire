@@ -86,7 +86,8 @@
           },
           {
             productId: vm.selected.productId,
-            surveyId: vm.selected.surveyId
+            surveyId: vm.selected.surveyId,
+            offer: vm.selected.offer
           }
         )
         .$promise

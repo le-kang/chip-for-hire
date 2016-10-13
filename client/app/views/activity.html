@@ -23,6 +23,10 @@
             <md-option ng-repeat="survey in activity.surveys" value="{{ survey.id }}">{{ survey.name }}</md-option>
           </md-select>
         </md-input-container>
+        <md-input-container class="full-width">
+          <label>Offer</label>
+          <textarea rows="2" md-select-on-focus md-maxlength="500" ng-model="activity.selected.offer" required></textarea>
+        </md-input-container>
         <div class="text-right">
           <md-button type="submit" class="md-primary" ng-disabled="activityForm.$invalid">
             Save
