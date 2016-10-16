@@ -66,11 +66,11 @@
 <md-list class="hours">
   <md-list-item ng-repeat="hour in cal.hours" ng-class="{'available': !cal.isAdmin() && cal.isAvailable(hour), 'reserved': !cal.isAdmin() && cal.isReserved(hour)}">
     <p>{{ hour }}: 00</p>
-    <md-button aria-label="Release" class="md-secondary" ng-if="!cal.isToday(cal.currentDate) && cal.isAdmin() && cal.isAvailable(hour)" ng-click="cal.releaseSlot(hour)">Release</md-button>
-    <md-button aria-label="Close Slot" class="md-secondary md-warn" ng-if="!cal.isToday(cal.currentDate) && cal.isAdmin() && !cal.isAvailable(hour) && !cal.isReserved(hour)" ng-click="cal.closeSlot(hour, $event)">Close Slot</md-button>
-    <md-button aria-label="Cancel Reservation" class="md-secondary md-warn" ng-if="!cal.isToday(cal.currentDate) && cal.isAdmin() && cal.isReserved(hour)" ng-click="cal.cancelReservation(hour)">Cancel Reservation</md-button>
-    <md-button aria-label="Reserve" class="md-secondary" ng-if="!cal.isToday(cal.currentDate) && !cal.isAdmin() && cal.isAvailable(hour)" ng-click="cal.reserve(hour, $event)">Reserve</md-button>
-    <md-button aria-label="Cancel Activity" class="md-secondary md-warn" ng-if="!cal.isToday(cal.currentDate) && !cal.isAdmin() && cal.isReserved(hour)" ng-click="cal.cancelActivity(hour)">Cancel Activity</md-button>
+    <md-button aria-label="Release" class="md-secondary" ng-if="cal.isAdmin() && cal.isAvailable(hour)" ng-click="cal.releaseSlot(hour)">Release</md-button>
+    <md-button aria-label="Close Slot" class="md-secondary md-warn" ng-if="cal.isAdmin() && !cal.isAvailable(hour) && !cal.isReserved(hour)" ng-click="cal.closeSlot(hour, $event)">Close Slot</md-button>
+    <md-button aria-label="Cancel Reservation" class="md-secondary md-warn" ng-if="cal.isAdmin() && cal.isReserved(hour)" ng-click="cal.cancelReservation(hour)">Cancel Reservation</md-button>
+    <md-button aria-label="Reserve" class="md-secondary" ng-if="!cal.isAdmin() && cal.isAvailable(hour)" ng-click="cal.reserve(hour, $event)">Reserve</md-button>
+    <md-button aria-label="Cancel Activity" class="md-secondary md-warn" ng-if="!cal.isAdmin() && cal.isReserved(hour)" ng-click="cal.cancelActivity(hour)">Cancel Activity</md-button>
     <md-button aria-label="View Activity" class="md-secondary md-primary" ng-if="!cal.isAdmin() && cal.isReserved(hour)" ng-click="cal.viewActivity(hour)">View Activity</md-button>
     <md-divider></md-divider>
   </md-list-item>
