@@ -15,7 +15,7 @@
       .find({
         filter: {
           where: {
-            date: { gt: moment().valueOf() }
+            date: { gte: moment().startOf('day').valueOf() }
           },
           include: ['activity']
         }
