@@ -82,7 +82,7 @@ module.exports = function(Activity) {
             {
               relation: 'shopkeeper',
               scope: {
-                fields: ['name', 'logo', 'description']
+                fields: ['name', 'logo', 'description', 'email', 'mobileNumber']
               }
             },
             {
@@ -169,6 +169,29 @@ module.exports = function(Activity) {
       id: Activity.current.id,
       surveyResults: Activity.current.surveyResults
     });
+    // send email with number of respondents
+    var subject = 'Your product demonstration activity has completed';
+    var content = _.template(
+      '<p>Dear <%- name %>:</p>' +
+      '<p>Your product demonstration activity has completed. ' +
+      '<%- numberOfRespondents %> people participated in your product sample survey. ' +
+      'You can view your survey results at ' +
+      '<a href="http://chip-for-hire.lekang.me/#/activities/<%- activityId %>">' +
+      'http://chip-for-hire.lekang.me/#/activities/<%- activityId %></a></p>' +
+      '<p>Kind Regards,</p>' +
+      '<p><i>Chip</i></p>'
+    )({
+      name: Activity.current.shopkeeper.name,
+      numberOfRespondents: Activity.current.surveyResults.length,
+      activityId: Activity.current.id
+    });
+    mailgunClient.sendMail(Activity.current.shopkeeper.email, subject, content);
+
+    if (Activity.current.shopkeeper.mobileNumber) {
+      var message = 'Your product demonstration activity has completed. ' + Activity.current.surveyResults.length + ' people participated in your product sample survey. You can view your survey results at http://chip-for-hire.lekang.me/#/activities/' + Activity.current.id;
+      var to = '+61' + Activity.current.shopkeeper.mobileNumber.slice(1);
+      twilioClient.sendSMS(to, message);
+    }
     Activity.current = null;
     Activity.findById(id, function(err, activity) {
       activity.updateAttribute('ended', true, function(err) {
