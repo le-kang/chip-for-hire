@@ -41,6 +41,12 @@
         "css/font-awesome.css",
         "fonts/*"
       ]
+    },
+    "angular-chart.js":{
+      "dependencies": {
+        "angular": "1.x",
+        "chart.js": "2.3"
+      }
     }
   }
 }
