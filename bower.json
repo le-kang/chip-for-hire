@@ -36,6 +36,9 @@
     "chart.js": "=2.3.0",
     "angular-chart.js": "^1.0.3"
   },
+  "resolutions": {
+    "angular": "1.5.8"
+  },
   "overrides": {
     "font-awesome": {
       "main": [
